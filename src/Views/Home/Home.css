@@ -1,0 +1,47 @@
+.homeImg {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+}
+
+.homeButtons {
+    width: 250px;
+    height: 55px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.homeLink {
+    margin: auto;
+    margin-right: 50px;
+}
+
+.homeText {
+    margin: auto;
+}
+
+.homeButtonsDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.homeDiv {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.homeBlurBack {
+    width: 600px;
+    height: 200px;
+    background: #cccccc80;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 25px;
+}

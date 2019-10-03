@@ -1,0 +1,68 @@
+.loginApp {
+    text-align: center;
+    /* background-image: url('https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
+}
+
+.loginImg {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+}
+
+.login {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.q {
+    margin: auto;
+    font-size: 50px;
+    border-style: solid;
+    border-width: 5px;
+    width: 55px;
+    border-radius: 50px;
+    margin-bottom: 25px;
+    margin-top: 100px;
+    color: #cecccc;
+    border-color: #cecccc;
+}
+
+.loginInput {
+    margin: auto;
+    margin-bottom: 15px;
+    width: 25%;
+    height: 25px;
+    border-radius: 25px;
+    opacity: .5;
+    border-style: none;
+    padding-left: 5px;
+}
+
+.loginInput:focus {
+    border-radius: 25px;
+    outline: none;
+    box-shadow: 0 0 3pt 2pt red;
+    padding: 5px;
+    padding-left: 15px;
+}
+
+.loginButton {
+    margin: auto;
+    width: 25%;
+    height: 25px;
+    border-radius: 25px;
+    padding: 5px;
+    background: #c92b20;
+    border-color: #c43e34;
+    cursor: pointer;
+}
+
+.register {
+    color: white;
+}
