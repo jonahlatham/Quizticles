@@ -10,9 +10,9 @@ class QuizType extends Component {
     }
     render() {
         return (
-            <select>
+            <select onChange={this.handleChoiceChange}>
                 <option value="">Type</option>
-                <option onChange={this.handleChoiceChange} value={this.props.quiz_type}>Multiple Choice</option>
+                <option value='Multiple Choice'>Multiple Choice</option>
             </select>
         )
     }

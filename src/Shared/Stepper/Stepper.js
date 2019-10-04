@@ -4,11 +4,12 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Answer from './Answer/Answer'
 import { connect } from 'react-redux';
 import Question from './Question/Question';
 import QuizName from './QuizSetUp/QuizName'
+import QuizDisplayed from './QuizDisplayed/QuizDisplayed'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -22,6 +23,9 @@ const useStyles = makeStyles(theme => ({
         marginBottom: theme.spacing(1),
     },
 }));
+
+
+
 
 function getSteps() {
     return ['Quiz Name', 'Question', 'Answer', 'Review'];
@@ -48,16 +52,31 @@ function getStepContent(step) {
                     <Answer />
                 </div>
             );
+        case 3:
+            return (
+                <div>
+                    <QuizDisplayed />
+                </div>
+            )
         default:
             return 'Unknown step';
     }
 }
 
-function HorizontalLinearStepper() {
+
+
+function HorizontalLinearStepper(props) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
     const steps = getSteps();
+
+    const handleAddQustion = (event) => {
+        props.dispatch({
+            type: 'SET_QUESTIONS',
+            payload: [...props.questions, { id: props.questions.length + 1, question: props.question, answers: props.answers }]
+        })
+    }
 
     const isStepAnswer = step => {
         return step === 2;
@@ -67,13 +86,17 @@ function HorizontalLinearStepper() {
         return skipped.has(step);
     };
 
+    const handleReview = () => {
+        handleNext()
+        handleAddQustion()
+    }
+
     const handleNext = () => {
         let newSkipped = skipped;
         if (isStepSkipped(activeStep)) {
             newSkipped = new Set(newSkipped.values());
             newSkipped.delete(activeStep);
         }
-
         setActiveStep(prevActiveStep => prevActiveStep + 1);
         setSkipped(newSkipped);
     };
@@ -83,6 +106,7 @@ function HorizontalLinearStepper() {
     };
 
     const handleNewQuestion = () => {
+        handleAddQustion()
         setActiveStep(prevActiveStep => prevActiveStep - 1);
     };
 
@@ -138,7 +162,7 @@ function HorizontalLinearStepper() {
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    onClick={handleNext}
+                                    onClick={activeStep === 2 ? handleReview : handleNext}
                                     className={classes.button}
                                 >
                                     {activeStep === steps.length - 1 ? 'Submit' : activeStep === 2 ? 'Review' : 'Next'}

@@ -30,6 +30,8 @@ const question = (state = '', action) => {
     switch (action.type) {
         case 'SET_QUESTION':
             return action.payload
+        case 'SET_QUESTIONS':
+            return ''
         default:
             return state
     }
@@ -39,9 +41,20 @@ const answers = (state = [], action) => {
     switch (action.type) {
         case 'SET_ANSWERS':
             return action.payload
+        case 'SET_QUESTIONS':
+            return []
         default:
             return state
     }
 }
 
-export default combineReducers({ user, quizName, quizType, question, answers })
+const questions = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_QUESTIONS':
+            return action.payload
+        default:
+            return state
+    }
+}
+
+export default combineReducers({ user, quizName, quizType, question, answers, questions })

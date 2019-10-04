@@ -7,7 +7,11 @@ const quiz = {
                 {
                     answer: '',
                     isTrue: true
-                }
+                },
+                {
+                    answer: '',
+                    isTrue: true
+                },
             ]
         },
         {
