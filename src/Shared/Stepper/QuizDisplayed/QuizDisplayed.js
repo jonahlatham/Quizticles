@@ -5,7 +5,9 @@ class QuizDisplayed extends Component {
     render() {
         return (
             <div>
-                 
+                 <div>
+                     {this.props.question}
+                 </div>
             </div>
         )
     }
