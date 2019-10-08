@@ -31,7 +31,10 @@ const question = (state = '', action) => {
         case 'SET_QUESTION':
             return action.payload
         case 'SET_QUESTIONS':
+        case 'UNSET_EDIT':
             return ''
+        case 'SET_EDIT':
+            return action.payload.question
         default:
             return state
     }
@@ -42,7 +45,21 @@ const answers = (state = [], action) => {
         case 'SET_ANSWERS':
             return action.payload
         case 'SET_QUESTIONS':
+        case 'UNSET_EDIT':
             return []
+        case 'SET_EDIT':
+            return action.payload.answers
+        default:
+            return state
+    }
+}
+
+const edit = (state = 0, action) => {
+    switch (action.type) {
+        case 'SET_EDIT':
+            return action.payload.id
+        case 'UNSET_EDIT':
+            return 0
         default:
             return state
     }
@@ -57,4 +74,4 @@ const questions = (state = [], action) => {
     }
 }
 
-export default combineReducers({ user, quizName, quizType, question, answers, questions })
+export default combineReducers({ user, quizName, quizType, question, answers, questions, edit })

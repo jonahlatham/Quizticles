@@ -1,0 +1,13 @@
+.questionDisplayed {
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 25px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.answers {
+    border-radius: 25px;
+    padding: 5px;
+    margin-bottom: 2px;
+}

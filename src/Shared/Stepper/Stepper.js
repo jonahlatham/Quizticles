@@ -31,7 +31,7 @@ function getSteps() {
     return ['Quiz Name', 'Question', 'Answer', 'Review'];
 }
 
-function getStepContent(step) {
+function getStepContent(step, handleEditReview) {
     switch (step) {
         case 0:
             return (
@@ -55,7 +55,7 @@ function getStepContent(step) {
         case 3:
             return (
                 <div>
-                    <QuizDisplayed />
+                    <QuizDisplayed handleEditReview={handleEditReview} />
                 </div>
             )
         default:
@@ -78,6 +78,26 @@ function HorizontalLinearStepper(props) {
         })
     }
 
+    const handleSaveQustion = (event) => {
+        const editedQuestions = props.questions.map((e) => {
+            if (props.edit === e.id) {
+                e.question = props.question
+                e.answers = props.answers
+            }
+            return e
+        })
+        props.dispatch({
+            type: 'SET_QUESTIONS',
+            payload: editedQuestions
+        });
+        props.dispatch({
+            type: 'UNSET_EDIT',
+        })
+    }
+
+    const handleEditReview = () => {
+        setActiveStep(prevActiveStep => prevActiveStep - 2)
+    }
     const isStepAnswer = step => {
         return step === 2;
     };
@@ -89,6 +109,12 @@ function HorizontalLinearStepper(props) {
     const handleReview = () => {
         handleNext()
         handleAddQustion()
+    }
+
+    const handleSave = () => {
+        handleNext()
+        handleSaveQustion()
+
     }
 
     const handleNext = () => {
@@ -142,13 +168,13 @@ function HorizontalLinearStepper(props) {
                     </div>
                 ) : (
                         <div>
-                            <div className={classes.instructions}>{getStepContent(activeStep)}</div>
+                            <div className={classes.instructions}>{getStepContent(activeStep, handleEditReview)}</div>
                             <div>
                                 <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                                     Back
               </Button>
 
-                                {isStepAnswer(activeStep) && (
+                                {isStepAnswer(activeStep) && props.edit === 0 && (
                                     <Button
                                         variant="contained"
                                         color="primary"
@@ -162,10 +188,10 @@ function HorizontalLinearStepper(props) {
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    onClick={activeStep === 2 ? handleReview : handleNext}
+                                    onClick={activeStep === 2 ? props.edit > 0 ? handleSave : handleReview : handleNext}
                                     className={classes.button}
                                 >
-                                    {activeStep === steps.length - 1 ? 'Submit' : activeStep === 2 ? 'Review' : 'Next'}
+                                    {activeStep === steps.length - 1 ? 'Submit' : activeStep === 2 ? props.edit > 0 ? 'Save' : 'Review' : 'Next'}
                                 </Button>
                             </div>
                         </div>
