@@ -72,7 +72,6 @@ app.post('/auth/login', (req, res, next) => {
                 throw (`Your credentials don't match our records.`)
             }
             delete catchUser.password
-            delete catchUser.id
             req.session.user = catchUser;
             res.send({ success: true, user: catchUser })
         })
@@ -99,7 +98,6 @@ app.post('/auth/register', (req, res, next) => {
         })
         .then((user) => {
             delete user.password
-            delete user.id
             req.session.user = user;
             res.send({ success: true, user })
         })
@@ -108,6 +106,27 @@ app.post('/auth/register', (req, res, next) => {
         })
 })
 
+//////////////////////////////////////////////////////////////////////////////////////
+
+app.post('/api/savedQuiz', (req,res,next)=>{
+    const db = app.get('db')
+    const date = new Date()
+    const { name, genre_id, is_private, questions } = req.body
+    db.quiz.insert({ name, genre_id, is_private, date_created:date, date_updated:date, creator_id:req.session.user.id })
+        .then((quiz) => {
+            const promises=questions.map((e,i)=>{
+                return db.question.insert({ question: e.question, question_type_id:e.question_type_id, quiz_id:quiz.id, date_created:date, date_updated:date })
+                    .then((question)=>{
+                        e.answers.map((j)=>{
+                           return db.answer.insert({answer: j.answer, is_correct: j.is_correct, question_id:question.id, date_created:date, date_updated:date})
+                        })
+                    })
+            })
+            return Promise.all(promises)
+        }).then((questions)=>{
+            res.send({successful:true})
+        })
+})
 
 //////////////////////////////////////////////////////////////////////////////////////
 

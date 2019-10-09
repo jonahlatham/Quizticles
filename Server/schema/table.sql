@@ -34,7 +34,7 @@ create table quiz (
 
 create table question (
     id serial primary key,
-    quesiton varchar,
+    question varchar,
     question_type_id int,
     quiz_id int,
     date_created TIMESTAMP,
@@ -45,7 +45,7 @@ create table question (
 
 create table answer (
     id serial primary key,
-    question varchar,
+    answer varchar,
     is_correct BOOLEAN,
     question_id int,
     date_created timestamp,
