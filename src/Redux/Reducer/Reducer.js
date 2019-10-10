@@ -17,9 +17,27 @@ const quizName = (state = '', action) => {
     }
 }
 
-const quizType = (state = '', action) => {
+const is_private = (state = false, action) => {
     switch (action.type) {
-        case 'SET_QUIZ_TYPE':
+        case 'SET_IS_PRIVATE':
+            return action.payload
+        default:
+            return state
+    }
+}
+
+const genre_id = (state = '', action) => {
+    switch (action.type) {
+        case 'SET_GENRE_ID':
+            return action.payload
+        default:
+            return state
+    }
+}
+
+const question_type_id = (state = '', action) => {
+    switch (action.type) {
+        case 'SET_QUESTION_GENRE_ID':
             return action.payload
         default:
             return state
@@ -74,4 +92,4 @@ const questions = (state = [], action) => {
     }
 }
 
-export default combineReducers({ user, quizName, quizType, question, answers, questions, edit })
+export default combineReducers({ user, quizName, is_private, genre_id, question_type_id, question, answers, questions, edit })

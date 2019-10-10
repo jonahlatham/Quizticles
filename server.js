@@ -112,7 +112,7 @@ app.post('/api/savedQuiz', (req,res,next)=>{
     const db = app.get('db')
     const date = new Date()
     const { name, genre_id, is_private, questions } = req.body
-    db.quiz.insert({ name, genre_id, is_private, date_created:date, date_updated:date, creator_id:req.session.user.id })
+    db.quiz.insert({ name:quizName, genre_id, is_private, date_created:date, date_updated:date, creator_id:req.session.user.id })
         .then((quiz) => {
             const promises=questions.map((e,i)=>{
                 return db.question.insert({ question: e.question, question_type_id:e.question_type_id, quiz_id:quiz.id, date_created:date, date_updated:date })
@@ -124,7 +124,36 @@ app.post('/api/savedQuiz', (req,res,next)=>{
             })
             return Promise.all(promises)
         }).then((questions)=>{
-            res.send({successful:true})
+            res.send({success:true})
+        })
+        .catch((err) => {
+            res.send({ success: false, err })
+        })
+})
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+app.get('/api/genre', (req, res, next)=>{
+    const db = app.get('db')
+    db.genre.find()
+        .then((genre) => {
+            res.send({success:true, genre:genre})
+        })
+        .catch((err) => {
+            res.send({ success: false, err })
+        })
+})
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+app.get('/api/questionType', (req, res, next)=>{
+    const db = app.get('db')
+    db.question_type.find()
+        .then((genre) => {
+            res.send({success:true, genre:genre})
+        })
+        .catch((err) => {
+            res.send({ success: false, err })
         })
 })
 

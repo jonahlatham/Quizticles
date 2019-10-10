@@ -25,7 +25,7 @@ class App extends Component {
   }
   render() {
     let authRoutes = ''
-    if (this.props.user) {
+    if (this.props.user.id) {
       authRoutes = <div>
         <Route path="/createquiz" component={CreateNew} />
         <Route path="/discoverquiz" component={Discover} />

@@ -9,13 +9,21 @@ class QuizName extends Component {
             payload: event.target.value,
         })
     }
+    handlePrivateChange = (event) => {
+        this.props.dispatch({
+            type: 'SET_IS_PRIVATE',
+            payload: event.target.checked
+        })
+    }
     render() {
         return (
             <div>
                 <h2>Quiz Name</h2>
                 <input value={this.props.QuizName} onChange={this.handleNameChange} />
                 <br />
-                <QuizType />
+                <QuizType history={this.props.history}/>
+                <br />
+                <input name='isPrivate' checked={this.props.is_private} onChange={this.handlePrivateChange} type="checkBox" /> Private
             </div>
         )
     }
