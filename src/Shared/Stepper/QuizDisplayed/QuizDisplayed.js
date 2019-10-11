@@ -27,7 +27,7 @@ class QuizDisplayed extends Component {
     render() {
         const quizThings = this.props.questions.map((e, i) => {
             let answers = e.answers.map((e, i) => {
-                return <div className='answers' style={{ background: e.isCorrect === true ? 'green' : 'red' }} key={e.id}>{e.answer}</div>
+                return <div className='answers' style={{ background: e.is_correct === true ? 'green' : 'red' }} key={e.id}>{e.answer}</div>
             })
             return <div key={e.id} className='questionDisplayed'>
                 <u>{e.question}</u>

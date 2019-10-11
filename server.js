@@ -112,7 +112,7 @@ app.post('/api/savedQuiz', (req,res,next)=>{
     const db = app.get('db')
     const date = new Date()
     const { name, genre_id, is_private, questions } = req.body
-    db.quiz.insert({ name:quizName, genre_id, is_private, date_created:date, date_updated:date, creator_id:req.session.user.id })
+    db.quiz.insert({ name, genre_id, is_private, date_created:date, date_updated:date, creator_id:req.session.user.id })
         .then((quiz) => {
             const promises=questions.map((e,i)=>{
                 return db.question.insert({ question: e.question, question_type_id:e.question_type_id, quiz_id:quiz.id, date_created:date, date_updated:date })

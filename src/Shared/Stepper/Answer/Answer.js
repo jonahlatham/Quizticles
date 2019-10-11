@@ -12,7 +12,7 @@ class Answer extends Component {
     handleAdd = (event) => {
         this.props.dispatch({
             type: 'SET_ANSWERS',
-            payload: [...this.props.answers, { id: this.props.answers.length + 1, answer: this.state.answer, isCorrect: this.state.isCorrect }]
+            payload: [...this.props.answers, { id: this.props.answers.length + 1, answer: this.state.answer, is_correct: this.state.isCorrect }]
         })
         this.setState({
             answer: '',
@@ -42,7 +42,7 @@ class Answer extends Component {
             payload: this.props.answers.map((e) => {
                 if (e.id === this.state.editedId) {
                     e.answer = this.state.answer
-                    e.isCorrect = this.state.isCorrect
+                    e.is_correct = this.state.isCorrect
                 }
                 return e
             })
@@ -58,7 +58,7 @@ class Answer extends Component {
     render() {
         const answers = this.props.answers.map((e, i) => {
             return (
-                <div key={i} style={{ background: `${e.isCorrect === true ? 'green' : 'red'}` }}>
+                <div key={i} style={{ background: `${e.is_correct === true ? 'green' : 'red'}` }}>
                     <div>{e.answer}</div>
                     <button onClick={() => { this.handleEdit(e) }}>Edit</button>
                 </div>

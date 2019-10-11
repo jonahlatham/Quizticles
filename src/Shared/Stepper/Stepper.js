@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import Question from './Question/Question';
 import QuizName from './QuizSetUp/QuizName'
 import QuizDisplayed from './QuizDisplayed/QuizDisplayed'
+import axios from 'axios'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -94,6 +95,24 @@ function HorizontalLinearStepper(props) {
         props.dispatch({
             type: 'UNSET_EDIT',
         })
+    }
+
+    const handleSubmitFinal = () => {
+        debugger
+        let body = {
+        name: props.quizName,
+        genre_id: props.genre_id,
+        is_private: props.is_private,
+        questions: props.questions
+        }
+        axios.post('/api/savedQuiz', body)
+            .then((response)=>{
+                if(response.data.success){
+                    props.history.push('/Home')
+                } else {
+                    props.history.push('/')
+                }
+            })
     }
 
     const handleEditReview = () => {
@@ -189,7 +208,7 @@ function HorizontalLinearStepper(props) {
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    onClick={activeStep === 2 ? props.edit > 0 ? handleSave : handleReview : handleNext}
+                                    onClick={activeStep === steps.length - 1 ? handleSubmitFinal : activeStep === 2 ? props.edit > 0 ? handleSave : handleReview : handleNext }
                                     className={classes.button}
                                 >
                                     {activeStep === steps.length - 1 ? 'Submit' : activeStep === 2 ? props.edit > 0 ? 'Save' : 'Review' : 'Next'}
