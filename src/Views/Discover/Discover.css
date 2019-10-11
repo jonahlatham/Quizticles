@@ -1,0 +1,13 @@
+.quizzesDisplayed {
+    width: 100px;
+    height: 100px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.listedQuizzes {
+    display: flex;
+    justify-content: space-around;
+}

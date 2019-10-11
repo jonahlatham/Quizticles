@@ -10,9 +10,16 @@ class Answer extends Component {
     }
 
     handleAdd = (event) => {
+        let correctLoop = this.props.answers
+        if(this.state.isCorrect){
+           correctLoop = correctLoop.map((e)=>{
+               e.is_correct=false
+               return e
+           })
+        }
         this.props.dispatch({
             type: 'SET_ANSWERS',
-            payload: [...this.props.answers, { id: this.props.answers.length + 1, answer: this.state.answer, is_correct: this.state.isCorrect }]
+            payload: [...correctLoop, { id: this.props.answers.length + 1, answer: this.state.answer, is_correct: this.state.isCorrect }]
         })
         this.setState({
             answer: '',
@@ -37,13 +44,22 @@ class Answer extends Component {
     }
 
     handleSave = () => {
+        debugger
+        let correctLoop = this.props.answers
+        if(this.state.isCorrect){
+           correctLoop = correctLoop.map((e)=>{
+                e.is_correct=false
+                return e
+           })
+        }
+                debugger
         this.props.dispatch({
             type: 'SET_ANSWERS',
-            payload: this.props.answers.map((e) => {
+            payload: correctLoop.map((e) => {
                 if (e.id === this.state.editedId) {
                     e.answer = this.state.answer
                     e.is_correct = this.state.isCorrect
-                }
+            }
                 return e
             })
         })

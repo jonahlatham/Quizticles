@@ -159,6 +159,19 @@ app.get('/api/questionType', (req, res, next)=>{
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+app.get('/api/quiz', (req, res, next)=>{
+    const db = app.get('db')
+    db.quiz.find()
+        .then((quiz) => {
+            res.send({success:true, quiz:quiz})
+        })
+        .catch((err) => {
+            res.send({ success: false, err })
+        })
+})
+
+//////////////////////////////////////////////////////////////////////////////////////
+
 const port = process.env.PORT || 5050
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
