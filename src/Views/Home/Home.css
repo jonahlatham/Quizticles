@@ -40,7 +40,6 @@
     background: #cccccc80;
     left: 0px;
     top: 0px;
-    z-index: -1;
     display: flex;
     justify-content: space-around;
     border-radius: 25px;
