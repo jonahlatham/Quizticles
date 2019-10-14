@@ -21,6 +21,8 @@
 
 .homeText {
     margin: auto;
+    height: 153px;
+    overflow-y: hidden;
 }
 
 .homeButtonsDiv {

@@ -32,7 +32,7 @@ class App extends Component {
         <Route path="/quiz/edit/:id" component={Edit} />
         <Route path="/quiz/reviewsubmissions/:id" component={Review} />
         <Route path="/quiz/:id" component={TakeQuiz} />
-        <Route path="/userprofile" component={UserProfile} />
+        {/* <Route path="/userprofile" component={UserProfile} /> */}
         <Route path="/home" component={Home} />
       </div>
     }

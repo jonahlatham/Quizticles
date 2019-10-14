@@ -107,9 +107,7 @@ function HorizontalLinearStepper(props) {
         }
         axios.post('/api/savedQuiz', body)
             .then((response)=>{
-                if(response.data.success){
-                    props.history.push('/Home')
-                } else {
+                if(response.data.success!==true){
                     props.history.push('/')
                 }
             })

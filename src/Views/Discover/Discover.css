@@ -43,3 +43,10 @@
     font-family: fantasy;
     font-size: 12px;
 }
+
+.discoverFlexer {
+    width: 900px;
+    justify-content: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -25,15 +25,17 @@ export default class Discover extends Component {
 
     render() {
         let allQuizzes = this.state.quizzes.map((e, i) => {
-            return (
-                <Link className='link' to='`/discoverquiz/:${e.id}`'>
-                <div style={{ background: e.genre_id===1 ? 'green' : e.genre_id===2 ? 'blue' : e.genre_id===3 ? 'red' : e.genre_id===4 ? 'yellow' : e.genre_id===5 ? 'orange' : 'white', color: e.genre_id===6 ? 'black' : 'white'}} className='quizzesDisplayed' key={e.id}>
-                        {e.name}
-                        <br />
-                        <small className='discoverSmall'>{e.genre_id===1 ? 'History' : e.genre_id===2 ? 'Science' : e.genre_id===3 ? 'Math' : e.genre_id===4 ? 'Pop Culture' : e.genre_id===5 ? 'Culinary' : 'Misc'}</small>
-                    </div>
-                </Link>
-            )
+            if (e.is_private !== true) {
+                return (
+                    <Link className='link' to='`/discoverquiz/:${e.id}`'>
+                        <div style={{ background: e.genre_id === 1 ? 'green' : e.genre_id === 2 ? 'blue' : e.genre_id === 3 ? 'red' : e.genre_id === 4 ? 'yellow' : e.genre_id === 5 ? 'orange' : 'white', color: e.genre_id === 6 || e.genre_id === 4 ? 'black' : 'white' }} className='quizzesDisplayed' key={e.id}>
+                            {e.name}
+                            <br />
+                            <small className='discoverSmall'>{e.genre_id === 1 ? 'History' : e.genre_id === 2 ? 'Science' : e.genre_id === 3 ? 'Math' : e.genre_id === 4 ? 'Pop Culture' : e.genre_id === 5 ? 'Culinary' : 'Misc'}</small>
+                        </div>
+                    </Link>
+                )
+            }
         })
         return (
             <div className='discoverApp'>
@@ -41,7 +43,9 @@ export default class Discover extends Component {
                     <div>
                         <img className='discoverImg' src="https://images.unsplash.com/photo-1504610926078-a1611febcad3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" alt='img' />
                     </div>
-                    {allQuizzes}
+                    <div className='discoverFlexer'>
+                        {allQuizzes}
+                    </div>
                 </div>
             </div>
         )
