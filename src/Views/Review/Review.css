@@ -15,6 +15,7 @@
     height: 600px;
     background: #f6f8f84f;
     border-radius: 25px;
+    padding-bottom: 15px;
 }
 
 .reviewDivs {
@@ -39,7 +40,7 @@ strong {
 .reviewQuizzesDisplayed {
     margin-top: 22px;
     margin-left: 10px;
-    width: 100px;
+    min-width: 100px;
     height: 100px;
     border-radius: 25px;
     padding: 3px;
