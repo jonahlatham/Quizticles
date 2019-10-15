@@ -27,7 +27,7 @@ export default class Discover extends Component {
         let allQuizzes = this.state.quizzes.map((e, i) => {
             if (e.is_private !== true) {
                 return (
-                    <Link className='link' to={`/takequiz/${e.id}`}>
+                    <Link className='link' to={`/quiz/${e.id}`}>
                         <div style={{ background: e.genre_id === 1 ? 'green' : e.genre_id === 2 ? 'blue' : e.genre_id === 3 ? 'red' : e.genre_id === 4 ? 'yellow' : e.genre_id === 5 ? 'orange' : 'white', color: e.genre_id === 6 || e.genre_id === 4 ? 'black' : 'white' }} className='quizzesDisplayed' key={e.id}>
                             {e.name}
                             <br />

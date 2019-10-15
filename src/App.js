@@ -39,7 +39,7 @@ class App extends Component {
     return (
       <div className='App'>
         <Router>
-          <Header />
+          <Header /> 
           <Switch>
             {authRoutes}
             <Route path="/register" component={Register} />
