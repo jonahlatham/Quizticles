@@ -23,7 +23,7 @@ export default class Home extends Component {
     render() {
         let homeQuizzes = this.state.homeQuiz.map((e, i) => {
                 return (
-                    <div className='homeQuizDisplayed'>
+                    <div key={e.id} className='homeQuizDisplayed'>
                         {e.name}
                     </div>
                 )
