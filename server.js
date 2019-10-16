@@ -80,7 +80,7 @@ app.post('/auth/login', (req, res, next) => {
         })
 })
 
-////////////////
+////////////////////////////////////////////////////////////////////////////
 
 app.post('/auth/register', (req, res, next) => {
     const db = app.get('db');
@@ -130,6 +130,7 @@ app.post('/api/savedQuiz', (req, res, next) => {
             res.send({ success: false, err })
         })
 })
+
 //////////////////////////////////////////////////////////////////////////////////////
 
 app.get('/api/quiz/:id', (req, res, next) => {
@@ -148,11 +149,11 @@ app.get('/api/quiz/:id', (req, res, next) => {
             })
             return Promise.all(answerPromises)
         })
-        .then((answers)=>{
+        .then((answers) => {
             const flattenedAnswers = answers.flat()
-            dataWorks.questions.map((question)=>{
-                question.answers=flattenedAnswers.filter((answer)=>{
-                    return question.id===answer.question_id
+            dataWorks.questions.map((question) => {
+                question.answers = flattenedAnswers.filter((answer) => {
+                    return question.id === answer.question_id
                 })
                 return question
             })
@@ -202,6 +203,28 @@ app.get('/api/quiz', (req, res, next) => {
         })
 })
 
+//////////////////////////////////////////////////////////////////////////////////////
+app.delete('/api/quiz/:id', (req, res, next) => {
+    const db = app.get('db')
+    db.question.find({ quiz_id: req.params.id })
+        .then((questions) => {
+            return Promise.all(questions.map((e) => {
+                return db.answer.destroy({ question_id: e.id })
+            }))
+        })
+        .then((answers) => {
+            return db.question.destroy({ quiz_id: req.params.id })
+        })
+        .then(() => {
+            return db.quiz.destroy({ id: req.params.id })
+        })
+        .then(() => {
+            res.send({ success: true })
+        })
+        .catch((err) => {
+            res.send({ success: false, err })
+        })
+})
 //////////////////////////////////////////////////////////////////////////////////////
 
 const port = process.env.PORT || 5050

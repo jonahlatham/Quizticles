@@ -5,7 +5,6 @@ import './TakeQuiz.css'
 export default class TakeQuiz extends Component {
     state = {
         quiz: null,
-        isChecked: ''
     }
 
     componentDidMount() {
@@ -18,9 +17,14 @@ export default class TakeQuiz extends Component {
             })
     }
 
+    // handleSubmit = () => {
+
+    // }
+
     handleChange = (event) => {
+        // debugger
         this.setState({
-            [event.target.name]: event.target.checked,
+           [`valueChecked${event.target.name}`]: event.target.value,
         })
     }
 
@@ -35,7 +39,7 @@ export default class TakeQuiz extends Component {
                         <div className='takeQuizQuestion'><strong>{e.question}</strong></div>
                         <div>
                             {e.answers.map((answer, i) => {
-                                return <div className='takeQuizAnswers' key={answer.id}> <input name={answer.id} checked={this.state.isChecked} onChange={this.handleChange} type="radio" /> {answer.answer}</div>
+                                return <div className='takeQuizAnswers' key={answer.id}> <input name={answer.question_id} value={answer.id} checked={this.state[`valueChecked${answer.question_id}`] === answer.id.toString()} onChange={this.handleChange} type="radio" /> {answer.answer}</div>
                             })}
                         </div>
                     </div>
