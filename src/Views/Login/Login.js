@@ -21,7 +21,6 @@ class Login extends Component {
         }
         axios.post('/auth/login', body)
             .then((response) => {
-                debugger
                 if (response.data.success) {
                     this.props.dispatch({ type: 'SET_USER', payload: response.data.user })
                     this.props.history.push('/Home')

@@ -1,0 +1,27 @@
+.takeQuizQuiz {
+    margin: auto;
+    margin-top: 10px;
+    width: 500px;
+    min-height: 100px;
+    border-style: solid;
+    border-radius: 25px;
+}
+
+.takeQuizAnswers {
+    text-align: left;
+    margin-left: 30px;
+}
+
+.takeQuizQuizName {
+    font-size: 25px;
+}
+
+.takeQuizQuestion {
+    margin: auto;
+    margin-top: 7px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    min-width: 50px;
+    max-width: 450px;
+}

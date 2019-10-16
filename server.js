@@ -132,9 +132,35 @@ app.post('/api/savedQuiz', (req, res, next) => {
 })
 //////////////////////////////////////////////////////////////////////////////////////
 
-app.get('/api/savedQuiz', (req, res, next) => {
+app.get('/api/quiz/:id', (req, res, next) => {
     const db = app.get('db')
-    res.send({ name, genre_id, is_private, questions })
+    const { id } = req.params
+    let dataWorks = {}
+    db.quiz.findOne({ id })
+        .then((quiz) => {
+            dataWorks.quiz = quiz
+            return db.question.find({ quiz_id: quiz.id })
+        })
+        .then((questions) => {
+            dataWorks.questions = questions
+            const answerPromises = questions.map((e) => {
+                return db.answer.find({ question_id: e.id })
+            })
+            return Promise.all(answerPromises)
+        })
+        .then((answers)=>{
+            const flattenedAnswers = answers.flat()
+            dataWorks.questions.map((question)=>{
+                question.answers=flattenedAnswers.filter((answer)=>{
+                    return question.id===answer.question_id
+                })
+                return question
+            })
+            res.send(dataWorks)
+        })
+        .catch((err) => {
+            res.send({ success: false, err })
+        })
 })
 
 //////////////////////////////////////////////////////////////////////////////////////

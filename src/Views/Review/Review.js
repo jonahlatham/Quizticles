@@ -20,10 +20,10 @@ export default class Review extends Component {
             })
     }
     render() {
-        let historyQuiz = this.state.reviewQuizzes.map((e, i) => {
+        let historyQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id && e.genre_id === 1) {
-                return (
-                    <div className='reviewQuizzesDisplayed' style={{ background: 'green' }}>
+                r.push(
+                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: 'green' }}>
                         {e.name}
                         <br /><br /><br />
                         <button>Delete</button>
@@ -31,11 +31,12 @@ export default class Review extends Component {
                     </div>
                 )
             }
-        })
-        let scienceQuiz = this.state.reviewQuizzes.map((e, i) => {
+            return r
+        }, [])
+        let scienceQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id && e.genre_id === 2) {
-                return (
-                    <div className='reviewQuizzesDisplayed' style={{ background: 'blue' }}>
+                r.push(
+                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: 'blue' }}>
                         {e.name}
                         <br /><br /><br />
                         <button>Delete</button>
@@ -43,11 +44,12 @@ export default class Review extends Component {
                     </div>
                 )
             }
-        })
-        let mathQuiz = this.state.reviewQuizzes.map((e, i) => {
+            return r
+        }, [])
+        let mathQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id && e.genre_id === 3) {
-                return (
-                    <div className='reviewQuizzesDisplayed' style={{ background: 'red' }}>
+                r.push(
+                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: 'red' }}>
                         {e.name}
                         <br /><br /><br />
                         <button>Delete</button>
@@ -55,11 +57,12 @@ export default class Review extends Component {
                     </div>
                 )
             }
-        })
-        let popCultureQuiz = this.state.reviewQuizzes.map((e, i) => {
+            return r
+        }, [])
+        let popCultureQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id && e.genre_id === 4) {
-                return (
-                    <div className='reviewQuizzesDisplayed' style={{ background: 'yellow' }}>
+                r.push(
+                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: 'yellow' }}>
                         {e.name}
                         <br /><br /><br />
                         <button>Delete</button>
@@ -67,11 +70,12 @@ export default class Review extends Component {
                     </div>
                 )
             }
-        })
-        let culinaryQuiz = this.state.reviewQuizzes.map((e, i) => {
+            return r
+        }, [])
+        let culinaryQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id && e.genre_id === 5) {
-                return (
-                    <div className='reviewQuizzesDisplayed' style={{ background: 'orange' }}>
+                r.push(
+                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: 'orange' }}>
                         {e.name}
                         <br /><br /><br />
                         <button>Delete</button>
@@ -79,11 +83,12 @@ export default class Review extends Component {
                     </div>
                 )
             }
-        })
-        let miscQuiz = this.state.reviewQuizzes.map((e, i) => {
+            return r
+        }, [])
+        let miscQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id && e.genre_id === 6) {
-                return (
-                    <div className='reviewQuizzesDisplayed' style={{ background: 'white' }}>
+                r.push(
+                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: 'white' }}>
                         {e.name}
                         <br /><br /><br />
                         <button>Delete</button>
@@ -91,7 +96,8 @@ export default class Review extends Component {
                     </div>
                 )
             }
-        })
+            return r
+        }, [])
         return (
             <div>
                 <div>

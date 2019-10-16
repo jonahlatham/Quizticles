@@ -26,15 +26,15 @@ class App extends Component {
   render() {
     let authRoutes = ''
     if (this.props.user.id) {
-      authRoutes = <div>
-        <Route path="/createquiz" component={CreateNew} />
-        <Route path="/discoverquiz" component={Discover} />
-        <Route path="/quiz/edit/:id" component={Edit} />
-        <Route path="/quiz/reviewsubmissions/:id" component={Review} />
-        <Route path="/quiz/:id" component={TakeQuiz} />
-        {/* <Route path="/userprofile" component={UserProfile} /> */}
-        <Route path="/home" component={Home} />
-      </div>
+      authRoutes = [
+        <Route key={1} path="/createquiz" component={CreateNew} />,
+        <Route key={2} path="/discoverquiz" component={Discover} />,
+        <Route key={3} path="/quiz/edit/:id" component={Edit} />,
+        <Route key={4} path="/quiz/reviewsubmissions/:id" component={Review} />,
+        <Route key={5} path="/quiz/:id" component={TakeQuiz} />,
+        <Route key={6} path="/userprofile" component={UserProfile} />,
+        <Route key={7} path="/home" component={Home} />,
+      ]
     }
     return (
       <div className='App'>

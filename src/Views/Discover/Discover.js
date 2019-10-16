@@ -24,11 +24,11 @@ export default class Discover extends Component {
 
 
     render() {
-        let allQuizzes = this.state.quizzes.map((e, i) => {
+        let allQuizzes = this.state.quizzes.reduce((r, e, i) => {
             if (e.is_private !== true) {
-                return (
-                    <Link className='link' to={`/quiz/${e.id}`}>
-                        <div style={{ background: e.genre_id === 1 ? 'green' : e.genre_id === 2 ? 'blue' : e.genre_id === 3 ? 'red' : e.genre_id === 4 ? 'yellow' : e.genre_id === 5 ? 'orange' : 'white', color: e.genre_id === 6 || e.genre_id === 4 ? 'black' : 'white' }} className='quizzesDisplayed' key={e.id}>
+                r.push(
+                    <Link key={e.id} className='link' to={`/quiz/${e.id}`}>
+                        <div style={{ background: e.genre_id === 1 ? 'green' : e.genre_id === 2 ? 'blue' : e.genre_id === 3 ? 'red' : e.genre_id === 4 ? 'yellow' : e.genre_id === 5 ? 'orange' : 'white', color: e.genre_id === 6 || e.genre_id === 4 ? 'black' : 'white' }} className='quizzesDisplayed'>
                             {e.name}
                             <br />
                             <small className='discoverSmall'>{e.genre_id === 1 ? 'History' : e.genre_id === 2 ? 'Science' : e.genre_id === 3 ? 'Math' : e.genre_id === 4 ? 'Pop Culture' : e.genre_id === 5 ? 'Culinary' : 'Misc'}</small>
@@ -36,7 +36,8 @@ export default class Discover extends Component {
                     </Link>
                 )
             }
-        })
+            return r
+        }, [])
         return (
             <div className='discoverApp'>
                 <div className='listedQuizzes'>
