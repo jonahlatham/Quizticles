@@ -5,6 +5,7 @@ import './TakeQuiz.css'
 export default class TakeQuiz extends Component {
     state = {
         quiz: null,
+        submittedAnswer: [],
     }
 
     componentDidMount() {
@@ -17,15 +18,29 @@ export default class TakeQuiz extends Component {
             })
     }
 
-    // handleSubmit = () => {
-
-    // }
-
     handleChange = (event) => {
-        // debugger
         this.setState({
-           [`valueChecked${event.target.name}`]: event.target.value,
+            [`valueChecked_${event.target.name}`]: event.target.value,
         })
+    }
+
+    handleSubmit = () => {
+        debugger
+        let body = {
+            quiz_id: this.state.quiz.quiz.id,
+            submittedAnswer: this.state.quiz.questions.map((e)=>{
+                return {question_id: Number(e.id), answer_id: Number(this.state[`valueChecked_${e.id}`])}
+            })
+        }
+        axios.post('/api/quiz/', body)
+            .then((response) => {
+                debugger
+                if (response.data.success) {
+                    this.props.history.push('/Home')
+                } else {
+                    this.props.history.push('/')
+                }
+            })
     }
 
     render() {
@@ -39,7 +54,7 @@ export default class TakeQuiz extends Component {
                         <div className='takeQuizQuestion'><strong>{e.question}</strong></div>
                         <div>
                             {e.answers.map((answer, i) => {
-                                return <div className='takeQuizAnswers' key={answer.id}> <input name={answer.question_id} value={answer.id} checked={this.state[`valueChecked${answer.question_id}`] === answer.id.toString()} onChange={this.handleChange} type="radio" /> {answer.answer}</div>
+                                return <div className='takeQuizAnswers' key={answer.id}> <input name={answer.question_id} value={answer.id} checked={this.state[`valueChecked_${answer.question_id}`] === answer.id.toString()} onChange={this.handleChange} type="radio" /> {answer.answer}</div>
                             })}
                         </div>
                     </div>
@@ -52,7 +67,7 @@ export default class TakeQuiz extends Component {
                 <div className='takeQuizQuizName'><u>{this.state.quiz.quiz.name}</u></div>
                 <br />
                 {takeQuiz}
-                <button>Submit</button>
+                <button onClick={this.handleSubmit}>Submit</button>
             </div>
         )
     }

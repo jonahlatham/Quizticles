@@ -179,7 +179,8 @@ app.post('/api/quiz/', (req, res, next) => {
             const flattenedAnswers = answers.flat();
             const comparedAnswers = flattenedAnswers.reduce((r, e) => {
                 const isCorrect = submittedAnswer.reduce((bool, sa) => {
-                    return e.question_id === sa.question_id && e.id === sa.id
+                    bool = e.question_id === sa.question_id && e.id === sa.answer_id
+                    return bool
                 }, false)
                 r.push({ question_id: e.question_id, answer_id: e.id, selected_correct: isCorrect, date_created: date })
                 return r
