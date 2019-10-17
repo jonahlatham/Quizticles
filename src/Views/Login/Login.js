@@ -35,8 +35,10 @@ class Login extends Component {
                 <img className='loginImg' src="https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="pic" />
                 <div className='login'>
                     <div className='q'>Q</div>
-                    <input name='email' value={this.state.email} onChange={this.handleChange} placeholder='E-MAIL' className='loginInput' type="text" />
-                    <input name='password' value={this.state.password} onChange={this.handleChange} placeholder='PASSWORD' className='loginInput' type="text" />
+                    <form >
+                        <input name='email' value={this.state.email} onChange={this.handleChange} placeholder='E-MAIL' className='loginInput' type="email" /> <br/>
+                        <input name='password' value={this.state.password} onChange={this.handleChange} placeholder='PASSWORD' className='loginInput' type="password" />
+                    </form>
                     <button onClick={this.handleLogin} className='loginButton'>Log In</button>
                     <Link className='' to='/Register'>Register</Link>
                 </div>

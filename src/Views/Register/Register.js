@@ -50,10 +50,12 @@ class Register extends Component {
                     <img className='registerImg' src="https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1332&q=80" alt="pic" />
                     <div className='register'>
                         <div className='q'>Q</div>
-                        <input name='first_name' value={this.state.first_name} onChange={this.handleChange} className='registerInput' placeholder='FIRST NAME' type="text" />
-                        <input name='last_name' value={this.state.last_name} onChange={this.handleChange} className='registerInput' placeholder='LAST NAME' type="text" />
-                        <input name='email' value={this.state.email} onChange={this.handleChange} className='registerInput' placeholder='E-MAIL' type="text" />
-                        <input name='password' value={this.state.password} onChange={this.handleChange} className='registerInput' placeholder='PASSWORD' type="text" />
+                        <form action="">
+                            <input name='first_name' value={this.state.first_name} onChange={this.handleChange} className='registerInput' placeholder='FIRST NAME' type="text" /> <br/>
+                            <input name='last_name' value={this.state.last_name} onChange={this.handleChange} className='registerInput' placeholder='LAST NAME' type="text" /> <br/>
+                            <input name='email' value={this.state.email} onChange={this.handleChange} className='registerInput' placeholder='E-MAIL' type="email" /> <br/>
+                            <input name='password' value={this.state.password} onChange={this.handleChange} className='registerInput' placeholder='PASSWORD' type="password" /> <br/>
+                        </form>
                         <button onClick={this.handleRegister} className='registerButton'>Register</button>
                         <Link className='' to='/'>Login</Link>                    </div>
                 </div>

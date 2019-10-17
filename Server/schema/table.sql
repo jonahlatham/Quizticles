@@ -55,10 +55,14 @@ create table answer (
 
 create table submitted_answer (
     id serial primary key,
+    quiz_id int,
+    question_id int,
     answer_id int,
     people_id int,
     selected_correct BOOLEAN,
     date_created TIMESTAMP,
     foreign key(answer_id) REFERENCES answer(id),
-    foreign key(people_id) REFERENCES people(id)
+    foreign key(people_id) REFERENCES people(id),
+    foreign key(question_id) REFERENCES question(id),
+    foreign key(quiz_id) REFERENCES quiz(id)
 )

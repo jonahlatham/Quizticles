@@ -17,6 +17,15 @@
 .homeLink {
     margin: auto;
     margin-right: 50px;
+    text-decoration: none;
+    color: black;
+}
+
+.homeTextLink {
+    margin: auto;
+    margin-right: 100px;
+    text-decoration: none;
+    color: black;
 }
 
 .homeText {

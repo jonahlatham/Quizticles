@@ -46,8 +46,6 @@ app.get('/auth/user', (req, res, next) => {
 })
 
 app.delete('/auth/user', (req, res, next) => {
-    // this destroys the session and removes the user object
-    //aka logs you out
     req.session.destroy()
     res.send({ success: true })
 })
@@ -158,6 +156,41 @@ app.get('/api/quiz/:id', (req, res, next) => {
                 return question
             })
             res.send(dataWorks)
+        })
+        .catch((err) => {
+            res.send({ success: false, err })
+        })
+})
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+app.post('/api/quiz/', (req, res, next) => {
+    const db = app.get('db')
+    const date = new Date()
+    const { quiz_id, submittedAnswer } = req.body
+    db.question.find({ quiz_id })
+        .then((question) => {
+            return Promise.all(
+                question.map((q) => {
+                    return db.answer.find({ question_id: q.id, is_correct: true })
+                }))
+        })
+        .then((answers) => {
+            const flattenedAnswers = answers.flat();
+            const comparedAnswers = flattenedAnswers.reduce((r, e) => {
+                const isCorrect = submittedAnswer.reduce((bool, sa) => {
+                    return e.question_id === sa.question_id && e.id === sa.id
+                }, false)
+                r.push({ question_id: e.question_id, answer_id: e.id, selected_correct: isCorrect, date_created: date })
+                return r
+            }, [])
+            const comparedAnswersPromises = comparedAnswers.map((e, i) => {
+                return db.submitted_answer.insert({ answer_id: e.answer_id, quiz_id: quiz_id, question_id: e.question_id, people_id: req.session.user.id, selected_correct: e.selected_correct, date_created: date })
+            })
+            return Promise.all(comparedAnswersPromises)
+        })
+        .then((response) => {
+            res.send({ success: true })
         })
         .catch((err) => {
             res.send({ success: false, err })

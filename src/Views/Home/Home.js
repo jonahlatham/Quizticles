@@ -22,11 +22,11 @@ export default class Home extends Component {
     }
     render() {
         let homeQuizzes = this.state.homeQuiz.map((e, i) => {
-                return (
-                    <div key={e.id} className='homeQuizDisplayed'>
-                        {e.name}
-                    </div>
-                )
+            return (
+                <div key={e.id} className='homeQuizDisplayed'>
+                    {e.name}
+                </div>
+            )
         })
         return (
             <div>
@@ -35,12 +35,13 @@ export default class Home extends Component {
                 </div>
                 <div className='homeDiv'>
                     <div className='homeBlurBack'>
-                        <div className='homeText'>
-                            <strong>Your Quizzes</strong>
-                            <br/>
-                            {/* <p>Text for Quizzes <br /> text <br /> txt <br />more txt</p> */}
-                            {homeQuizzes}
-                        </div>
+                        <Link className='homeTextLink' to='/quiz/reviewsubmissions/:id'>
+                            <div className='homeText'>
+                                <strong>Reconnect</strong>
+                                <br />
+                                {homeQuizzes}
+                            </div>
+                        </Link>
                         <div className='homeButtonsDiv'>
                             <Link className='homeLink' to='/createquiz'><button className='homeButtons'> Create New </button> </Link>
                             <Link className='homeLink' to='/quiz/reviewsubmissions/:id'><button className='homeButtons'>Your Quizzes</button></Link>

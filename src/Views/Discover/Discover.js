@@ -28,7 +28,7 @@ export default class Discover extends Component {
             if (e.is_private !== true) {
                 r.push(
                     <Link key={e.id} className='link' to={`/quiz/${e.id}`}>
-                        <div style={{ background: e.genre_id === 1 ? 'green' : e.genre_id === 2 ? 'blue' : e.genre_id === 3 ? 'red' : e.genre_id === 4 ? 'yellow' : e.genre_id === 5 ? 'orange' : 'white', color: e.genre_id === 6 || e.genre_id === 4 ? 'black' : 'white' }} className='quizzesDisplayed'>
+                        <div style={{ background: e.genre_id === 1 ? '#06810c' : e.genre_id === 2 ? '#100e7e' : e.genre_id === 3 ? '#aa1414' : e.genre_id === 4 ? '#dbdb33' : e.genre_id === 5 ? '#d48f0e' : '#cec9c9', color: e.genre_id === 6 || e.genre_id === 4 ? 'black' : 'white' }} className='quizzesDisplayed'>
                             {e.name}
                             <br />
                             <small className='discoverSmall'>{e.genre_id === 1 ? 'History' : e.genre_id === 2 ? 'Science' : e.genre_id === 3 ? 'Math' : e.genre_id === 4 ? 'Pop Culture' : e.genre_id === 5 ? 'Culinary' : 'Misc'}</small>

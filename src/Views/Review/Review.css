@@ -12,8 +12,8 @@
     margin: auto;
     text-align: center;
     width: 90%;
-    height: 600px;
-    background: #f6f8f84f;
+    height: 575px;
+    background: #fdfdfd31;
     border-radius: 25px;
     padding-bottom: 15px;
 }
@@ -23,7 +23,7 @@
     width: 80%;
     height: 150px;
     border-radius: 25px;
-    background: #483a77c7;
+    background: #f6f8f84f;
     margin-top: 10px;
     overflow-x: scroll;
     display: flex;

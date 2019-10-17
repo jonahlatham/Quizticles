@@ -41,7 +41,7 @@ export default class Review extends Component {
         let historyQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id && e.genre_id === 1) {
                 r.push(
-                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: 'green' }}>
+                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#06810c' }}>
                         {e.name}
                         <br /><br /><br />
                         <button onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
@@ -55,7 +55,7 @@ export default class Review extends Component {
         let scienceQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id && e.genre_id === 2) {
                 r.push(
-                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: 'blue' }}>
+                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#100e7e', color: '#c2c6f1' }}>
                         {e.name}
                         <br /><br /><br />
                         <button onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
@@ -68,7 +68,7 @@ export default class Review extends Component {
         let mathQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id && e.genre_id === 3) {
                 r.push(
-                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: 'red' }}>
+                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#aa1414' }}>
                         {e.name}
                         <br /><br /><br />
                         <button onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
@@ -82,7 +82,7 @@ export default class Review extends Component {
         let popCultureQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id && e.genre_id === 4) {
                 r.push(
-                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: 'yellow' }}>
+                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#dbdb33' }}>
                         {e.name}
                         <br /><br /><br />
                         <button onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
@@ -96,7 +96,7 @@ export default class Review extends Component {
         let culinaryQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id && e.genre_id === 5) {
                 r.push(
-                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: 'orange' }}>
+                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#d48f0e' }}>
                         {e.name}
                         <br /><br /><br />
                         <button onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
@@ -110,7 +110,7 @@ export default class Review extends Component {
         let miscQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id && e.genre_id === 6) {
                 r.push(
-                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: 'white' }}>
+                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#cec9c9' }}>
                         {e.name}
                         <br /><br /><br />
                         <button onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
