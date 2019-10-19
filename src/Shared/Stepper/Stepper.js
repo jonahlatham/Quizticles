@@ -37,7 +37,7 @@ function getStepContent(step, handleEditReview, props) {
         case 0:
             return (
                 <div>
-                    <QuizName history={props.history}/>
+                    <QuizName history={props.history} />
                 </div>
             );
         case 1:
@@ -99,15 +99,17 @@ function HorizontalLinearStepper(props) {
 
     const handleSubmitFinal = () => {
         let body = {
-        name: props.quizName,
-        genre_id: props.genre_id,
-        is_private: props.is_private,
-        questions: props.questions
+            name: props.quizName,
+            genre_id: props.genre_id,
+            is_private: props.is_private,
+            questions: props.questions
         }
         axios.post('/api/savedQuiz', body)
-            .then((response)=>{
-                debugger
-                if(response.data.success){
+            .then((response) => {
+                if (response.data.success) {
+                    this.props.dispatch({
+                        type: 'SUBMIT',
+                    })
                     props.history.push('/Home')
                 } else {
                     props.history.push('/')
@@ -157,7 +159,7 @@ function HorizontalLinearStepper(props) {
     };
 
     const handleReset = () => {
-        setActiveStep(0); 
+        setActiveStep(0);
     };
 
     return (
@@ -208,7 +210,7 @@ function HorizontalLinearStepper(props) {
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    onClick={activeStep === steps.length - 1 ? handleSubmitFinal : activeStep === 2 ? props.edit > 0 ? handleSave : handleReview : handleNext }
+                                    onClick={activeStep === steps.length - 1 ? handleSubmitFinal : activeStep === 2 ? props.edit > 0 ? handleSave : handleReview : handleNext}
                                     className={classes.button}
                                 >
                                     {activeStep === steps.length - 1 ? 'Submit' : activeStep === 2 ? props.edit > 0 ? 'Save' : 'Review' : 'Next'}

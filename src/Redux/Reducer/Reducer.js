@@ -12,6 +12,8 @@ const quizName = (state = '', action) => {
     switch (action.type) {
         case 'SET_QUIZ_NAME':
             return action.payload
+        case 'SUBMIT':
+            return ''
         default:
             return state
     }
@@ -21,6 +23,8 @@ const is_private = (state = false, action) => {
     switch (action.type) {
         case 'SET_IS_PRIVATE':
             return action.payload
+        case 'SUBMIT':
+            return false
         default:
             return state
     }
@@ -39,6 +43,8 @@ const question_type_id = (state = '', action) => {
     switch (action.type) {
         case 'SET_QUESTION_GENRE_ID':
             return action.payload
+        case 'SUBMIT':
+            return ''
         default:
             return state
     }
@@ -53,6 +59,8 @@ const question = (state = '', action) => {
             return ''
         case 'SET_EDIT':
             return action.payload.question
+        case 'SUBMIT':
+            return ''
         default:
             return state
     }
@@ -67,6 +75,8 @@ const answers = (state = [], action) => {
             return []
         case 'SET_EDIT':
             return action.payload.answers
+        case 'SUBMIT':
+            return []
         default:
             return state
     }
@@ -78,6 +88,8 @@ const edit = (state = 0, action) => {
             return action.payload.id
         case 'UNSET_EDIT':
             return 0
+        case 'SUBMIT':
+            return 0
         default:
             return state
     }
@@ -87,6 +99,8 @@ const questions = (state = [], action) => {
     switch (action.type) {
         case 'SET_QUESTIONS':
             return action.payload
+        case 'SUBMIT':
+            return []
         default:
             return state
     }

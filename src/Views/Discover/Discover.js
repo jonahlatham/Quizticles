@@ -6,7 +6,8 @@ import { Link } from "react-router-dom"
 export default class Discover extends Component {
 
     state = {
-        quizzes: []
+        quizzes: [],
+        filteredInput: ''
     }
 
     componentDidMount() {
@@ -22,6 +23,12 @@ export default class Discover extends Component {
             })
     }
 
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+        console.log(this.state.filteredInput)
+    }
 
     render() {
         let allQuizzes = this.state.quizzes.reduce((r, e, i) => {
@@ -38,8 +45,13 @@ export default class Discover extends Component {
             }
             return r
         }, [])
+
+        // let filteredQuizzes = this.state.filteredInput.map((e)=>{
+            
+        // })
         return (
             <div className='discoverApp'>
+                <input type="text" name='filteredInput' value={this.state.filteredInput} onChange={this.handleChange} />
                 <div className='listedQuizzes'>
                     <div>
                         <img className='discoverImg' src="https://images.unsplash.com/photo-1504610926078-a1611febcad3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" alt='img' />

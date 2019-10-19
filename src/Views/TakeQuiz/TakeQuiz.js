@@ -14,7 +14,6 @@ export default class TakeQuiz extends Component {
                 this.setState({
                     quiz: response.data
                 })
-                console.log(response.data)
             })
     }
 
@@ -25,7 +24,6 @@ export default class TakeQuiz extends Component {
     }
 
     handleSubmit = () => {
-        debugger
         let body = {
             quiz_id: this.state.quiz.quiz.id,
             submittedAnswer: this.state.quiz.questions.map((e)=>{
@@ -34,9 +32,8 @@ export default class TakeQuiz extends Component {
         }
         axios.post('/api/quiz/', body)
             .then((response) => {
-                debugger
                 if (response.data.success) {
-                    this.props.history.push('/Home')
+                    this.props.history.push(`/quiz/score/${this.props.match.params.id}`)
                 } else {
                     this.props.history.push('/')
                 }

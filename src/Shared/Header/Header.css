@@ -1,8 +1,14 @@
-.Header {
-    width: 100%;
+.headerLeft {
+    width: 50%;
     height: 50px;
     display: flex;
     justify-content: flex-start;
+    left: 0px;
+}
+
+.header {
+    width: 100%;
+    display: flex
 }
 
 .link {
@@ -14,4 +20,23 @@
 .link:focus {
     color: #b10e0e;
     opacity: .5;
+}
+
+.headerRight {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+.logoutButton {
+    border: none;
+    background: none;
+    color: #b10e0e;
+    height: 5px;
+    margin-top: 7px;
+}
+
+.logoutButton:hover {
+    opacity: .5;
+    cursor: pointer;
 }

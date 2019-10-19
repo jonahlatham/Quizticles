@@ -179,7 +179,9 @@ app.post('/api/quiz/', (req, res, next) => {
             const flattenedAnswers = answers.flat();
             const comparedAnswers = flattenedAnswers.reduce((r, e) => {
                 const isCorrect = submittedAnswer.reduce((bool, sa) => {
-                    bool = e.question_id === sa.question_id && e.id === sa.answer_id
+                    if (e.question_id === sa.question_id && e.id === sa.answer_id) {
+                        bool = true
+                    }
                     return bool
                 }, false)
                 r.push({ question_id: e.question_id, answer_id: e.id, selected_correct: isCorrect, date_created: date })
@@ -198,6 +200,41 @@ app.post('/api/quiz/', (req, res, next) => {
         })
 })
 
+//////////////////////////////////////////////////////////////////////////////////////
+app.get('/api/score/:id', (req, res, next) => {
+    const db = app.get('db')
+    const { id } = req.params
+    let dataWorks = {}
+    db.quiz.findOne({ id })
+        .then((quiz) => {
+            dataWorks.quiz = quiz
+            return db.question.find({ quiz_id: quiz.id })
+        })
+        .then((questions) => {
+            dataWorks.questions = questions
+            const answerPromises = questions.map((e) => {
+                return db.answer.find({ question_id: e.id })
+            })
+            return Promise.all(answerPromises)
+        })
+        .then((answers) => {
+            const flattenedAnswers = answers.flat()
+            dataWorks.questions.map((question) => {
+                question.answers = flattenedAnswers.filter((answer) => {
+                    return question.id === answer.question_id
+                })
+                return question
+            })
+            return db.submitted_answer.find({ quiz_id: id, people_id: req.session.user.id })
+        })
+        .then((submitted_answer) => {
+            dataWorks.submitted_answer = submitted_answer
+            res.send(dataWorks)
+        })
+        .catch((err) => {
+            res.send({ success: false, err })
+        })
+})
 //////////////////////////////////////////////////////////////////////////////////////
 
 app.get('/api/genre', (req, res, next) => {
