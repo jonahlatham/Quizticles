@@ -7,8 +7,12 @@ export default class Discover extends Component {
 
     state = {
         quizzes: [],
+<<<<<<< HEAD
         filteredInput: '',
         filteredQuizzes: [],
+=======
+        filteredInput: ''
+>>>>>>> 28c909fefa7a29ec1b3a5d83ff5f3c53915559f9
     }
 
     componentDidMount() {
@@ -29,6 +33,10 @@ export default class Discover extends Component {
         this.setState({
             [event.target.name]: event.target.value
         })
+<<<<<<< HEAD
+=======
+        console.log(this.state.filteredInput)
+>>>>>>> 28c909fefa7a29ec1b3a5d83ff5f3c53915559f9
     }
 
     render() {
@@ -47,6 +55,12 @@ export default class Discover extends Component {
             return r
         }, [])
 
+<<<<<<< HEAD
+=======
+        // let filteredQuizzes = this.state.filteredInput.map((e)=>{
+            
+        // })
+>>>>>>> 28c909fefa7a29ec1b3a5d83ff5f3c53915559f9
         return (
             <div className='discoverApp'>
                 <input type="text" name='filteredInput' value={this.state.filteredInput} onChange={this.handleChange} />

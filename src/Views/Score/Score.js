@@ -4,7 +4,11 @@ import axios from 'axios'
 
 export default class Edit extends Component {
     state = {
+<<<<<<< HEAD
         quiz: null
+=======
+        quiz: []
+>>>>>>> 28c909fefa7a29ec1b3a5d83ff5f3c53915559f9
     }
 
     componentDidMount(id) {
@@ -19,6 +23,7 @@ export default class Edit extends Component {
     }
 
     render() {
+<<<<<<< HEAD
         // debugger
         let correctedQuiz;
 
@@ -49,6 +54,16 @@ export default class Edit extends Component {
         return (
             <div>
                 {correctedQuiz}
+=======
+        let correctedQuiz = Object.keys(this.state.quiz).map((e)=>{
+            console.log(e)
+            return e
+        })
+        return (
+            <div>
+                {correctedQuiz}
+                Score
+>>>>>>> 28c909fefa7a29ec1b3a5d83ff5f3c53915559f9
             </div>
         )
     }
