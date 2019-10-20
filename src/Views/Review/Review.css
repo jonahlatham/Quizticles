@@ -45,3 +45,20 @@ strong {
     border-radius: 25px;
     padding: 3px;
 }
+
+.reviewButton {
+    width: 60px;
+    height: 20px;
+    border-radius: 25px;
+    margin-bottom: 2px;
+    border-style: inset;
+    border-width: 1.3px;
+}
+
+.reviewButton:active {
+    border-style: outset;
+}
+
+.reviewButton:hover {
+    cursor: pointer;
+}

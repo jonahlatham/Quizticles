@@ -1,17 +1,46 @@
-.Header {
-    width: 100%;
+.headerLeft {
+    width: 75%;
     height: 50px;
     display: flex;
     justify-content: flex-start;
+    left: 0px;
+}
+
+.header {
+    width: 100%;
+    display: flex
 }
 
 .link {
     margin: 10px;
     text-decoration: none;
     color: black;
+    text-shadow: 2px 0px 5px #ffffff;
 }
 
 .link:focus {
+    opacity: .6;
+}
+
+.headLink:hover {
+    opacity: .3;
+}
+
+.headerRight {
+    display: flex;
+    justify-content: flex-end;
+    width: 25%;
+}
+
+.logoutButton {
+    border: none;
+    background: none;
     color: #b10e0e;
+    height: 5px;
+    margin-top: 7px;
+}
+
+.logoutButton:hover {
     opacity: .5;
+    cursor: pointer;
 }

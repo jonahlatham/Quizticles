@@ -22,11 +22,14 @@ export default class Review extends Component {
     }
 
     handleDelete = (id) => {
+        debugger
         axios.delete(`/api/quiz/${id}`)
             .then((response) => {
+                debugger
                 return axios.get('/api/quiz')
             })
             .then((response) => {
+                debugger
                 if (response.data.success) {
                     this.setState({
                         reviewQuizzes: response.data.quiz
@@ -44,9 +47,9 @@ export default class Review extends Component {
                     <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#06810c' }}>
                         {e.name}
                         <br /><br /><br />
-                        <button onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
+                        <button className='reviewButton' onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
                         <br />
-                        <Link key={e.id} className='link' to={`/quiz/${e.id}`}><button>Review</button></Link>
+                        <Link key={e.id} to={`/quiz/${e.id}`}><button className='reviewButton'>Review</button></Link>
                     </div>
                 )
             }
@@ -58,9 +61,9 @@ export default class Review extends Component {
                     <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#100e7e', color: '#c2c6f1' }}>
                         {e.name}
                         <br /><br /><br />
-                        <button onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
+                        <button className='reviewButton' onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
                         <br />
-                        <Link key={e.id} className='link' to={`/quiz/${e.id}`}><button>Review</button></Link>                    </div>
+                        <Link key={e.id} to={`/quiz/${e.id}`}><button className='reviewButton'>Review</button></Link>                    </div>
                 )
             }
             return r
@@ -71,9 +74,9 @@ export default class Review extends Component {
                     <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#aa1414' }}>
                         {e.name}
                         <br /><br /><br />
-                        <button onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
+                        <button className='reviewButton' onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
                         <br />
-                        <Link key={e.id} className='link' to={`/quiz/${e.id}`}><button>Review</button></Link>
+                        <Link key={e.id} to={`/quiz/${e.id}`}><button className='reviewButton'>Review</button></Link>
                     </div>
                 )
             }
@@ -85,9 +88,9 @@ export default class Review extends Component {
                     <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#dbdb33' }}>
                         {e.name}
                         <br /><br /><br />
-                        <button onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
+                        <button className='reviewButton' onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
                         <br />
-                        <Link key={e.id} className='link' to={`/quiz/${e.id}`}><button>Review</button></Link>
+                        <Link key={e.id} to={`/quiz/${e.id}`}><button className='reviewButton'>Review</button></Link>
                     </div>
                 )
             }
@@ -99,9 +102,9 @@ export default class Review extends Component {
                     <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#d48f0e' }}>
                         {e.name}
                         <br /><br /><br />
-                        <button onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
+                        <button className='reviewButton' onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
                         <br />
-                        <Link key={e.id} className='link' to={`/quiz/${e.id}`}><button>Review</button></Link>
+                        <Link key={e.id} to={`/quiz/${e.id}`}><button className='reviewButton'>Review</button></Link>
                     </div>
                 )
             }
@@ -113,9 +116,9 @@ export default class Review extends Component {
                     <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#cec9c9' }}>
                         {e.name}
                         <br /><br /><br />
-                        <button onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
+                        <button className='reviewButton' onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
                         <br />
-                        <Link key={e.id} className='link' to={`/quiz/${e.id}`}><button>Review</button></Link>
+                        <Link key={e.id} to={`/quiz/${e.id}`}><button className='reviewButton'>Review</button></Link>
                     </div>
                 )
             }

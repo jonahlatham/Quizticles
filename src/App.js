@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import './App.css'
 import CreateNew from './Views/CreateNew/CreateNew'
 import Discover from './Views/Discover/Discover'
-import Edit from './Views/Edit/Edit'
+import Score from './Views/Score/Score'
 import Home from './Views/Home/Home'
 import Login from './Views/Login/Login'
 import Register from './Views/Register/Register'
@@ -29,7 +29,7 @@ class App extends Component {
       authRoutes = [
         <Route key={1} path="/createquiz" component={CreateNew} />,
         <Route key={2} path="/discoverquiz" component={Discover} />,
-        <Route key={3} path="/quiz/edit/:id" component={Edit} />,
+        <Route key={3} path="/quiz/score/:id" component={Score} />,
         <Route key={4} path="/quiz/reviewsubmissions/:id" component={Review} />,
         <Route key={5} path="/quiz/:id" component={TakeQuiz} />,
         <Route key={6} path="/userprofile" component={UserProfile} />,
