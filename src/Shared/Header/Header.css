@@ -1,9 +1,5 @@
 .headerLeft {
-<<<<<<< HEAD
     width: 75%;
-=======
-    width: 50%;
->>>>>>> 28c909fefa7a29ec1b3a5d83ff5f3c53915559f9
     height: 50px;
     display: flex;
     justify-content: flex-start;
@@ -46,8 +42,6 @@
 
 .logoutButton:hover {
     opacity: .5;
-<<<<<<< HEAD
-=======
 }
 
 .headerRight {
@@ -66,6 +60,5 @@
 
 .logoutButton:hover {
     opacity: .5;
->>>>>>> 28c909fefa7a29ec1b3a5d83ff5f3c53915559f9
     cursor: pointer;
 }

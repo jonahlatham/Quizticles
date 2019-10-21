@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import './Answer.css'
 
 class Answer extends Component {
     state = {
@@ -74,7 +75,7 @@ class Answer extends Component {
     render() {
         const answers = this.props.answers.map((e, i) => {
             return (
-                <div key={i} style={{ background: `${e.is_correct === true ? 'green' : 'red'}` }}>
+                <div className='correctWrongAnswers' key={i} style={{ background: `${e.is_correct === true ? 'green' : 'red'}` }}>
                     <div>{e.answer}</div>
                     <button onClick={() => { this.handleEdit(e) }}>Edit</button>
                 </div>

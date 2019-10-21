@@ -5,7 +5,8 @@ import { Link } from "react-router-dom"
 
 export default class Review extends Component {
     state = {
-        reviewQuizzes: []
+        reviewQuizzes: [],
+        user: []
     }
 
     componentDidMount() {
@@ -13,12 +14,19 @@ export default class Review extends Component {
             .then((response) => {
                 if (response.data.success) {
                     this.setState({
-                        reviewQuizzes: response.data.quiz
+                        reviewQuizzes: response.data.quiz,
                     })
                 } else {
                     this.props.history.push('/')
                 }
             })
+        axios.get('/auth/user')
+            .then((response) => {
+                this.setState({
+                    user: response.data
+                })
+            })
+            console.log(this.state.user)
     }
 
     handleDelete = (id) => {
@@ -42,12 +50,12 @@ export default class Review extends Component {
 
     render() {
         let historyQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
-            if (e.creator_id && e.genre_id === 1) {
+            if (e.creator_id === this.state.user.user.id && e.genre_id === 1) {
                 r.push(
                     <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#06810c' }}>
                         {e.name}
                         <br /><br /><br />
-                        <button className='reviewButton' onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
+                        <button className='reviewButton' onClick={() => { this.handleDelete(e.id) }}>Delete</button>
                         <br />
                         <Link key={e.id} to={`/quiz/${e.id}`}><button className='reviewButton'>Review</button></Link>
                     </div>
@@ -56,12 +64,12 @@ export default class Review extends Component {
             return r
         }, [])
         let scienceQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
-            if (e.creator_id && e.genre_id === 2) {
+            if (e.creator_id === this.state.user.user.id && e.genre_id === 2) {
                 r.push(
                     <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#100e7e', color: '#c2c6f1' }}>
                         {e.name}
                         <br /><br /><br />
-                        <button className='reviewButton' onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
+                        <button className='reviewButton' onClick={() => { this.handleDelete(e.id) }}>Delete</button>
                         <br />
                         <Link key={e.id} to={`/quiz/${e.id}`}><button className='reviewButton'>Review</button></Link>                    </div>
                 )
@@ -74,7 +82,7 @@ export default class Review extends Component {
                     <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#aa1414' }}>
                         {e.name}
                         <br /><br /><br />
-                        <button className='reviewButton' onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
+                        <button className='reviewButton' onClick={() => { this.handleDelete(e.id) }}>Delete</button>
                         <br />
                         <Link key={e.id} to={`/quiz/${e.id}`}><button className='reviewButton'>Review</button></Link>
                     </div>
@@ -83,12 +91,12 @@ export default class Review extends Component {
             return r
         }, [])
         let popCultureQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
-            if (e.creator_id && e.genre_id === 4) {
+            if (e.creator_id === this.state.user.user.id && e.genre_id === 4) {
                 r.push(
                     <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#dbdb33' }}>
                         {e.name}
                         <br /><br /><br />
-                        <button className='reviewButton' onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
+                        <button className='reviewButton' onClick={() => { this.handleDelete(e.id) }}>Delete</button>
                         <br />
                         <Link key={e.id} to={`/quiz/${e.id}`}><button className='reviewButton'>Review</button></Link>
                     </div>
@@ -97,12 +105,12 @@ export default class Review extends Component {
             return r
         }, [])
         let culinaryQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
-            if (e.creator_id && e.genre_id === 5) {
+            if (e.creator_id === this.state.user.user.id && e.genre_id === 5) {
                 r.push(
                     <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#d48f0e' }}>
                         {e.name}
                         <br /><br /><br />
-                        <button className='reviewButton' onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
+                        <button className='reviewButton' onClick={() => { this.handleDelete(e.id) }}>Delete</button>
                         <br />
                         <Link key={e.id} to={`/quiz/${e.id}`}><button className='reviewButton'>Review</button></Link>
                     </div>
@@ -111,12 +119,12 @@ export default class Review extends Component {
             return r
         }, [])
         let miscQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
-            if (e.creator_id && e.genre_id === 6) {
+            if (e.creator_id === this.state.user.user.id && e.genre_id === 6) {
                 r.push(
                     <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#cec9c9' }}>
                         {e.name}
                         <br /><br /><br />
-                        <button className='reviewButton' onClick={()=>{this.handleDelete(e.id)}}>Delete</button>
+                        <button className='reviewButton' onClick={() => { this.handleDelete(e.id) }}>Delete</button>
                         <br />
                         <Link key={e.id} to={`/quiz/${e.id}`}><button className='reviewButton'>Review</button></Link>
                     </div>

@@ -2,20 +2,47 @@ import React, { Component } from 'react'
 import './Score.css'
 import axios from 'axios'
 
+function newCrap(obj) {
+    let answer = {
+        quiz: {
+            name: obj.quiz.name
+        },
+        questions: obj.questions.map(function (e) {
+            const submittedAnswerId = obj.submitted_answer.filter((sa) => {
+                if (sa.question_id === e.id) {
+                    return true
+                } else {
+                    return false
+                }
+            }).reverse()[0].answer_id
+            return {
+                question: e.question,
+                correctAnswer: e.answers.reduce((r, answer) => {
+                    if (answer.is_correct) {
+                        r = answer.answer
+                    }
+                    return r
+                }, ''),
+                submittedAnswer: e.answers.reduce((r, ssa) => {
+                    if (ssa.id === submittedAnswerId) {
+                        r = ssa
+                    }
+                    return r
+                }, ''),
+            }
+        })
+    }
+    return answer
+}
 export default class Edit extends Component {
     state = {
-<<<<<<< HEAD
         quiz: null
-=======
-        quiz: []
->>>>>>> 28c909fefa7a29ec1b3a5d83ff5f3c53915559f9
     }
-
-    componentDidMount(id) {
+    componentDidMount() {
         axios.get(`/api/score/${this.props.match.params.id}`)
             .then((response) => {
                 this.setState({
-                    quiz: response.data
+                    quiz: newCrap(response.data)
                 })
                 console.log(response.data)
                 console.log(this.state.quiz.quiz.id)
@@ -23,20 +50,26 @@ export default class Edit extends Component {
     }
 
     render() {
-<<<<<<< HEAD
         // debugger
         let correctedQuiz;
 
         if (this.state.quiz) {
             const questions = this.state.quiz.questions.map((e) => {
                 return (
-                    <div key={e.id} className='scoreQuizzes' style={{borderColor: this.state.quiz.submitted_answer[this.state.quiz.submitted_answer.length-1].selected_correct === true ? 'green' : 'red'}}>
+                    <div key={e.id} className='scoreQuizzes' style={{background: e.correctAnswer === e.submittedAnswer.answer ? 'green' : 'red'}}>
                         <div className='scoreQuestions'>{e.question}</div>
-                        <div>
-                            {e.answers.map((e) => {
-                                return <div style={{background: e.answers[1]}} className='scoreAnswers' key={e.id}>{e.answer}</div>
-                            })}
+                        <div style={{background: e.correctAnswer !== e.submittedAnswer.answer ? 'yellow' : '', width: '350px', margin: 'auto', borderRadius: '25px'}}>
+                            {e.correctAnswer}
                         </div>
+                        <div style={{background: e.correctAnswer !== e.submittedAnswer ? 'green' : '', width: '350px', margin: 'auto', borderRadius: '25px'}}>
+                            {/* {e.submittedAnswer.answer} */}
+                            {e.correctAnswer === e.submittedAnswer.answer ? '' : e.submittedAnswer.answer}
+                        </div>
+                        {/* <div>
+                            {e.answers.map((e) => {
+                                return <div className='scoreAnswers' key={e.id}>{e.answer}</div>
+                            })}
+                        </div> */}
                     </div>
                 )
             })
@@ -54,16 +87,6 @@ export default class Edit extends Component {
         return (
             <div>
                 {correctedQuiz}
-=======
-        let correctedQuiz = Object.keys(this.state.quiz).map((e)=>{
-            console.log(e)
-            return e
-        })
-        return (
-            <div>
-                {correctedQuiz}
-                Score
->>>>>>> 28c909fefa7a29ec1b3a5d83ff5f3c53915559f9
             </div>
         )
     }

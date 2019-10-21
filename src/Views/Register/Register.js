@@ -27,7 +27,6 @@ class Register extends Component {
         }
         axios.post('/auth/register', body)
             .then((response) => {
-                debugger
                 if (response.data.success) {
                     this.props.dispatch({ type: 'SET_USER', payload: response.data.user })
                     this.props.history.push('/home')
@@ -54,7 +53,11 @@ class Register extends Component {
                             <input name='first_name' value={this.state.first_name} onChange={this.handleChange} className='registerInput' placeholder='FIRST NAME' type="text" /> <br/>
                             <input name='last_name' value={this.state.last_name} onChange={this.handleChange} className='registerInput' placeholder='LAST NAME' type="text" /> <br/>
                             <input name='email' value={this.state.email} onChange={this.handleChange} className='registerInput' placeholder='E-MAIL' type="email" /> <br/>
-                            <input name='password' value={this.state.password} onChange={this.handleChange} className='registerInput' placeholder='PASSWORD' type="password" /> <br/>
+                            <input name='password' value={this.state.password} onChange={this.handleChange} className='registerInput' placeholder='PASSWORD' type="password" onKeyPress={event => {
+                            if (event.key === 'Enter') {
+                                this.handleRegister()
+                            }
+                        }} /> <br/>
                         </form>
                         <button onClick={this.handleRegister} className='registerButton'>Register</button>
                         <Link className='' to='/'>Login</Link>                    </div>

@@ -7,12 +7,9 @@ export default class Discover extends Component {
 
     state = {
         quizzes: [],
-<<<<<<< HEAD
         filteredInput: '',
         filteredQuizzes: [],
-=======
-        filteredInput: ''
->>>>>>> 28c909fefa7a29ec1b3a5d83ff5f3c53915559f9
+        user: []
     }
 
     componentDidMount() {
@@ -27,21 +24,25 @@ export default class Discover extends Component {
                     this.props.history.push('/')
                 }
             })
+        axios.get('/auth/user')
+            .then((response) => {
+                this.setState({
+                    user: response.data
+                })
+            })
+            console.log(this.state.user)
     }
 
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         })
-<<<<<<< HEAD
-=======
-        console.log(this.state.filteredInput)
->>>>>>> 28c909fefa7a29ec1b3a5d83ff5f3c53915559f9
     }
 
     render() {
+        // let creatorID = this.state.user
         let allQuizzes = this.state.quizzes.reduce((r, e, i) => {
-            if(e.name.toLowerCase().includes(this.state.filteredInput)){
+            if (e.name.toLowerCase().includes(this.state.filteredInput)) {
                 r.push(
                     <Link key={e.id} className='link' to={`/quiz/${e.id}`}>
                         <div style={{ background: e.genre_id === 1 ? '#06810c' : e.genre_id === 2 ? '#100e7e' : e.genre_id === 3 ? '#aa1414' : e.genre_id === 4 ? '#dbdb33' : e.genre_id === 5 ? '#d48f0e' : '#cec9c9', color: e.genre_id === 6 || e.genre_id === 4 ? 'black' : 'white' }} className='quizzesDisplayed'>
@@ -55,12 +56,6 @@ export default class Discover extends Component {
             return r
         }, [])
 
-<<<<<<< HEAD
-=======
-        // let filteredQuizzes = this.state.filteredInput.map((e)=>{
-            
-        // })
->>>>>>> 28c909fefa7a29ec1b3a5d83ff5f3c53915559f9
         return (
             <div className='discoverApp'>
                 <input type="text" name='filteredInput' value={this.state.filteredInput} onChange={this.handleChange} />

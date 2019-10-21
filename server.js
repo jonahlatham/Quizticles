@@ -37,7 +37,6 @@ app.use('/api/*', (req, res, next) => {
 })
 
 app.get('/auth/user', (req, res, next) => {
-    // check to see if user is in session
     if (req.session.user) {
         res.send({ success: true, user: req.session.user })
     } else {
@@ -177,14 +176,14 @@ app.post('/api/quiz/', (req, res, next) => {
         })
         .then((answers) => {
             const flattenedAnswers = answers.flat();
-            const comparedAnswers = flattenedAnswers.reduce((r, e) => {
-                const isCorrect = submittedAnswer.reduce((bool, sa) => {
-                    if (e.question_id === sa.question_id && e.id === sa.answer_id) {
+            const comparedAnswers = submittedAnswer.reduce((r, e) => {
+                const isCorrect = flattenedAnswers.reduce((bool, sa) => {
+                    if (e.question_id === sa.question_id && e.answer_id === sa.id) {
                         bool = true
                     }
                     return bool
                 }, false)
-                r.push({ question_id: e.question_id, answer_id: e.id, selected_correct: isCorrect, date_created: date })
+                r.push({ question_id: e.question_id, answer_id: e.answer_id, selected_correct: isCorrect, date_created: date })
                 return r
             }, [])
             const comparedAnswersPromises = comparedAnswers.map((e, i) => {
