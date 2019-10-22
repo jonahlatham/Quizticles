@@ -276,7 +276,10 @@ app.get('/api/quiz', (req, res, next) => {
 //////////////////////////////////////////////////////////////////////////////////////
 app.delete('/api/quiz/:id', (req, res, next) => {
     const db = app.get('db')
-    db.question.find({ quiz_id: req.params.id })
+    db.submitted_answer.destroy({ quiz_id: req.params.id })
+        .then((submittedAnswer) => {
+            return db.question.find({ quiz_id: req.params.id })
+        })
         .then((questions) => {
             return Promise.all(questions.map((e) => {
                 return db.answer.destroy({ question_id: e.id })

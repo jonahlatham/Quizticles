@@ -98,6 +98,7 @@ function HorizontalLinearStepper(props) {
     }
 
     const handleSubmitFinal = () => {
+        debugger
         let body = {
             name: props.quizName,
             genre_id: props.genre_id,
@@ -105,7 +106,8 @@ function HorizontalLinearStepper(props) {
             questions: props.questions
         }
         axios.post('/api/savedQuiz', body)
-            .then((response) => {
+        .then((response) => {
+            debugger
                 if (response.data.success) {
                     props.dispatch({
                         type: 'SUBMIT',

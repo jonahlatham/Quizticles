@@ -77,7 +77,7 @@ export default class Review extends Component {
             return r
         }, [])
         let mathQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
-            if (e.creator_id && e.genre_id === 3) {
+            if (e.creator_id === this.state.user.user.id && e.genre_id === 3) {
                 r.push(
                     <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#aa1414' }}>
                         {e.name}
