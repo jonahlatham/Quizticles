@@ -4,7 +4,10 @@ const bodyParser = require('body-parser')
 const massive = require('massive')
 const session = require('express-session')
 const bcrypt = require('bcrypt')
+const path = require('path');
 require('dotenv').config()
+
+app.use(express.static(path.join(__dirname, '/build')));
 
 const app = express()
 
@@ -315,6 +318,12 @@ app.delete('/api/quiz/:id', (req, res, next) => {
         })
 })
 //////////////////////////////////////////////////////////////////////////////////////
+
+app.get('/*', (req, res) => {
+    res.sendFile('index.html', {
+        root: path.join(__dirname, "build")
+    })
+});
 
 const port = process.env.PORT || 5050
 app.listen(port, () => {

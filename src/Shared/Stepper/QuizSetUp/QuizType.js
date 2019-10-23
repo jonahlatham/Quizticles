@@ -29,7 +29,7 @@ class QuizType extends Component {
     render() {
         const options = this.state.genreType.map((e, i) => {
             return <option key={e.id} value={e.id}>
-                {e.genre}
+                {e.genre.toUpperCase()}
             </option>
         })
         return (

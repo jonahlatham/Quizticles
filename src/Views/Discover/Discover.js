@@ -10,6 +10,7 @@ class Discover extends Component {
         quizzes: [],
         filteredInput: '',
         filteredQuizzes: [],
+        creatorOfQuizzes: [],
         user: []
     }
 
@@ -19,11 +20,13 @@ class Discover extends Component {
                 if (response.data.success) {
                     this.setState({
                         quizzes: response.data.quiz,
-                        filteredQuizzes: response.data.quiz
+                        filteredQuizzes: response.data.quiz,
+                        creatorOfQuizzes: response.data.quiz
                     })
                 } else {
                     this.props.history.push('/')
                 }
+                console.log(response.data)
             })
     }
 
@@ -37,13 +40,16 @@ class Discover extends Component {
         let allQuizzes = this.state.quizzes.reduce((r, e, i) => {
             if (e.name.toLowerCase().includes(this.state.filteredInput)) {
                 r.push(
-                    <Link key={e.id} className='link' to={`/quiz/${e.id}`}>
-                        <div style={{ background: e.genre_id === 1 ? '#06810c' : e.genre_id === 2 ? '#100e7e' : e.genre_id === 3 ? '#aa1414' : e.genre_id === 4 ? '#dbdb33' : e.genre_id === 5 ? '#d48f0e' : '#cec9c9', color: e.genre_id === 6 || e.genre_id === 4 ? 'black' : 'white' }} className='quizzesDisplayed'>
-                            {e.name}
-                            <br />
-                            <small className='discoverSmall'>{e.genre_id === 1 ? 'History' : e.genre_id === 2 ? 'Science' : e.genre_id === 3 ? 'Math' : e.genre_id === 4 ? 'Pop Culture' : e.genre_id === 5 ? 'Culinary' : 'Misc'}</small>
-                            <br/>
-                            <div>{e.creator}</div>
+                    <Link key={e.id} className='link discoverLinkToFixCrap' to={`/quiz/${e.id}`}>
+                        <div className='quizzesDisplayed'>
+                            <img className='discoverQuizImg' src={e.img} alt="img" />
+                            <div>
+                                {e.name}
+                                <br />
+                                <small className='discoverSmall'>{e.genre_id === 1 ? 'History' : e.genre_id === 2 ? 'Science' : e.genre_id === 3 ? 'Math' : e.genre_id === 4 ? 'Pop Culture' : e.genre_id === 5 ? 'Culinary' : 'Misc'}</small>
+                                <br/>
+                                <small className='discoverCreator'>Creator: {e.creator}</small>
+                            </div>
                         </div>
                     </Link>
                 )
@@ -53,11 +59,11 @@ class Discover extends Component {
 
         return (
             <div className='discoverApp'>
-                <input type="text" name='filteredInput' value={this.state.filteredInput} onChange={this.handleChange} />
+                <div className='discoverInputSearchBox'>
+                    <img className='discoverSearchImg' src="https://image.flaticon.com/icons/svg/751/751463.svg" alt="search" />
+                    <input className='discoverSearch' placeholder='Search' type="text" name='filteredInput' value={this.state.filteredInput} onChange={this.handleChange} />
+                </div>
                 <div className='listedQuizzes'>
-                    <div>
-                        <img className='discoverImg' src="https://images.unsplash.com/photo-1504610926078-a1611febcad3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" alt='img' />
-                    </div>
                     <div className='discoverFlexer'>
                         {allQuizzes}
                     </div>

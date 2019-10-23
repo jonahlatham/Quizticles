@@ -13,8 +13,9 @@
     text-align: center;
     width: 90%;
     height: 575px;
-    background: #fdfdfd31;
+    background: #9c9c9c31;
     border-radius: 25px;
+    padding: 5px;
     padding-bottom: 15px;
 }
 
@@ -23,10 +24,11 @@
     width: 80%;
     height: 150px;
     border-radius: 25px;
-    background: #f6f8f84f;
+    background: #9a9c9c4f;
     margin-top: 10px;
     overflow-x: scroll;
     display: flex;
+    padding-bottom: 15px;
 }
 
 strong {
@@ -44,6 +46,9 @@ strong {
     height: 100px;
     border-radius: 25px;
     padding: 3px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
 }
 
 .reviewButton {

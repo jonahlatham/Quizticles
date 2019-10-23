@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import QuizType from './QuizType'
 import { connect } from 'react-redux';
+import { placeholder } from '@babel/types';
 
 class QuizName extends Component {
     handleNameChange = (event) => {
@@ -25,13 +26,13 @@ class QuizName extends Component {
         return (
             <div>
                 <h2>Quiz Name</h2>
-                <input value={this.props.quizName} onChange={this.handleNameChange} />
+                <input placeholder='Quiz Name' value={this.props.quizName} onChange={this.handleNameChange} />
+                <br />
+                <input placeholder='Upload Image URL' type="text" value={this.props.quizImg} onChange={this.handleQuizImg} />
                 <br />
                 <QuizType history={this.props.history} />
                 <br />
                 <input name='isPrivate' checked={this.props.is_private} onChange={this.handlePrivateChange} type="checkBox" /> Private
-                <br />
-                <input type="text" value={this.props.quizImg} onChange={this.handleQuizImg} />
             </div>
         )
     }

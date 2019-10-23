@@ -58,10 +58,10 @@ export default class Edit extends Component {
                 return (
                     <div key={e.id} className='scoreQuizzes' style={{background: e.correctAnswer === e.submittedAnswer.answer ? 'green' : 'red'}}>
                         <div className='scoreQuestions'>{e.question}</div>
-                        <div style={{background: e.correctAnswer !== e.submittedAnswer.answer ? 'yellow' : '', width: '350px', margin: 'auto', borderRadius: '25px'}}>
+                        <div style={{background: e.correctAnswer !== e.submittedAnswer.answer ? 'green' : '', width: '350px', margin: 'auto', borderRadius: '25px', marginTop: '2px'}}>
                             {e.correctAnswer}
                         </div>
-                        <div style={{background: e.correctAnswer !== e.submittedAnswer ? 'green' : '', width: '350px', margin: 'auto', borderRadius: '25px'}}>
+                        <div style={{background: e.correctAnswer !== e.submittedAnswer ? 'yellow' : '', width: '350px', margin: 'auto', borderRadius: '25px', marginTop: '2px'}}>
                             {/* {e.submittedAnswer.answer} */}
                             {e.correctAnswer === e.submittedAnswer.answer ? '' : e.submittedAnswer.answer}
                         </div>

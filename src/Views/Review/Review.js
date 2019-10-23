@@ -26,7 +26,7 @@ export default class Review extends Component {
                     user: response.data
                 })
             })
-            console.log(this.state.user)
+        console.log(this.state.user)
     }
 
     handleDelete = (id) => {
@@ -52,7 +52,7 @@ export default class Review extends Component {
         let historyQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id === this.state.user.user.id && e.genre_id === 1) {
                 r.push(
-                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#06810c' }}>
+                    <div key={e.id} className='reviewQuizzesDisplayed'>
                         {e.name}
                         <br /><br /><br />
                         <button className='reviewButton' onClick={() => { this.handleDelete(e.id) }}>Delete</button>
@@ -66,7 +66,7 @@ export default class Review extends Component {
         let scienceQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id === this.state.user.user.id && e.genre_id === 2) {
                 r.push(
-                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#100e7e', color: '#c2c6f1' }}>
+                    <div key={e.id} className='reviewQuizzesDisplayed' >
                         {e.name}
                         <br /><br /><br />
                         <button className='reviewButton' onClick={() => { this.handleDelete(e.id) }}>Delete</button>
@@ -79,7 +79,7 @@ export default class Review extends Component {
         let mathQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id === this.state.user.user.id && e.genre_id === 3) {
                 r.push(
-                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#aa1414' }}>
+                    <div key={e.id} className='reviewQuizzesDisplayed'>
                         {e.name}
                         <br /><br /><br />
                         <button className='reviewButton' onClick={() => { this.handleDelete(e.id) }}>Delete</button>
@@ -93,7 +93,7 @@ export default class Review extends Component {
         let popCultureQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id === this.state.user.user.id && e.genre_id === 4) {
                 r.push(
-                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#dbdb33' }}>
+                    <div key={e.id} className='reviewQuizzesDisplayed' >
                         {e.name}
                         <br /><br /><br />
                         <button className='reviewButton' onClick={() => { this.handleDelete(e.id) }}>Delete</button>
@@ -107,7 +107,7 @@ export default class Review extends Component {
         let culinaryQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id === this.state.user.user.id && e.genre_id === 5) {
                 r.push(
-                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#d48f0e' }}>
+                    <div key={e.id} className='reviewQuizzesDisplayed'>
                         {e.name}
                         <br /><br /><br />
                         <button className='reviewButton' onClick={() => { this.handleDelete(e.id) }}>Delete</button>
@@ -121,7 +121,7 @@ export default class Review extends Component {
         let miscQuiz = this.state.reviewQuizzes.reduce((r, e, i) => {
             if (e.creator_id === this.state.user.user.id && e.genre_id === 6) {
                 r.push(
-                    <div key={e.id} className='reviewQuizzesDisplayed' style={{ background: '#cec9c9' }}>
+                    <div key={e.id} className='reviewQuizzesDisplayed'>
                         {e.name}
                         <br /><br /><br />
                         <button className='reviewButton' onClick={() => { this.handleDelete(e.id) }}>Delete</button>
@@ -134,9 +134,6 @@ export default class Review extends Component {
         }, [])
         return (
             <div>
-                <div>
-                    <img className='reviewImg' src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="img" />
-                </div>
                 <div className='reviewFlexDivs'>
                     <strong>History</strong>
                     <div className='reviewDivs'>
