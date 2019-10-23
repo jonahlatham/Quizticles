@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-const user = (state = {}, action) => {
+const user = (state = null, action) => {
     switch (action.type) {
         case 'SET_USER':
             return action.payload
+        case 'LOGOUT':
+            return null
         default:
             return state;
     }
@@ -11,6 +13,17 @@ const user = (state = {}, action) => {
 const quizName = (state = '', action) => {
     switch (action.type) {
         case 'SET_QUIZ_NAME':
+            return action.payload
+        case 'SUBMIT':
+            return ''
+        default:
+            return state
+    }
+}
+
+const quizImg = (state = '', action) => {
+    switch (action.type) {
+        case 'SET_QUIZ_IMG':
             return action.payload
         case 'SUBMIT':
             return ''
@@ -106,4 +119,4 @@ const questions = (state = [], action) => {
     }
 }
 
-export default combineReducers({ user, quizName, is_private, genre_id, question_type_id, question, answers, questions, edit })
+export default combineReducers({ user, quizName, quizImg, is_private, genre_id, question_type_id, question, answers, questions, edit })

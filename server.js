@@ -108,8 +108,8 @@ app.post('/auth/register', (req, res, next) => {
 app.post('/api/savedQuiz', (req, res, next) => {
     const db = app.get('db')
     const date = new Date()
-    const { name, genre_id, is_private, questions } = req.body
-    db.quiz.insert({ name, genre_id, is_private, date_created: date, date_updated: date, creator_id: req.session.user.id })
+    const { name, genre_id, is_private, questions, img } = req.body
+    db.quiz.insert({ name, genre_id, is_private, date_created: date, date_updated: date, creator_id: req.session.user.id, img })
         .then((quiz) => {
             const promises = questions.map((e, i) => {
                 return db.question.insert({ question: e.question, question_type_id: e.question_type_id, quiz_id: quiz.id, date_created: date, date_updated: date })
@@ -264,8 +264,24 @@ app.get('/api/questionType', (req, res, next) => {
 
 app.get('/api/quiz', (req, res, next) => {
     const db = app.get('db')
+    let newQuiz
     db.quiz.find({ is_private: false })
         .then((quiz) => {
+            newQuiz = quiz
+            return Promise.all(quiz.map((e) => {
+                return db.people.findOne({ id: e.creator_id })
+            }))
+        })
+        .then((people) => {
+            const quiz = newQuiz.map((e) => {
+                e.creator = people.reduce((r, peep) => {
+                    if (peep.id === e.creator_id) {
+                        r = `${peep.first_name} ${peep.last_name}`
+                    }
+                    return r
+                }, '')
+                return e
+            })
             res.send({ success: true, quiz: quiz })
         })
         .catch((err) => {

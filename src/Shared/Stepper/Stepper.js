@@ -103,7 +103,8 @@ function HorizontalLinearStepper(props) {
             name: props.quizName,
             genre_id: props.genre_id,
             is_private: props.is_private,
-            questions: props.questions
+            questions: props.questions,
+            img: props.quizImg
         }
         axios.post('/api/savedQuiz', body)
         .then((response) => {

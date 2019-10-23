@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import './Discover.css'
 import { Link } from "react-router-dom"
+import { connect } from 'react-redux';
 
-export default class Discover extends Component {
+class Discover extends Component {
 
     state = {
         quizzes: [],
@@ -24,13 +25,6 @@ export default class Discover extends Component {
                     this.props.history.push('/')
                 }
             })
-        axios.get('/auth/user')
-            .then((response) => {
-                this.setState({
-                    user: response.data
-                })
-            })
-            console.log(this.state.user)
     }
 
     handleChange = (event) => {
@@ -40,7 +34,6 @@ export default class Discover extends Component {
     }
 
     render() {
-        // let creatorID = this.state.user
         let allQuizzes = this.state.quizzes.reduce((r, e, i) => {
             if (e.name.toLowerCase().includes(this.state.filteredInput)) {
                 r.push(
@@ -49,6 +42,8 @@ export default class Discover extends Component {
                             {e.name}
                             <br />
                             <small className='discoverSmall'>{e.genre_id === 1 ? 'History' : e.genre_id === 2 ? 'Science' : e.genre_id === 3 ? 'Math' : e.genre_id === 4 ? 'Pop Culture' : e.genre_id === 5 ? 'Culinary' : 'Misc'}</small>
+                            <br/>
+                            <div>{e.creator}</div>
                         </div>
                     </Link>
                 )
@@ -71,3 +66,5 @@ export default class Discover extends Component {
         )
     }
 }
+
+export default connect((storeObject) => { return storeObject })(Discover)
