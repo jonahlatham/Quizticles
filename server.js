@@ -7,9 +7,9 @@ const bcrypt = require('bcrypt')
 const path = require('path');
 require('dotenv').config()
 
-app.use(express.static(path.join(__dirname, '/build')));
-
 const app = express()
+
+app.use(express.static(path.join(__dirname, '/build')));
 
 app.use(cors())
 app.use(bodyParser.json())
