@@ -31,7 +31,7 @@ class Header extends Component {
                                 <Link className='link headLink' to='/Home'>Home</Link>
                                 <Link className='link headLink' to='/createquiz'>Create New</Link>
                                 <Link className='link headLink' to='/discoverquiz'>Discover</Link>
-                                {/* <Link className='link headLink' to='/userprofile'>Profile</Link> */}
+                                <Link className='link headLink' to='/pastScores'>Past Scores</Link>
                                 <Link className='link headLink' to='/quiz/reviewsubmissions/:id'>Review</Link>
                             </div>
                             <div className='headerRight'>

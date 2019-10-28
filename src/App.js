@@ -11,6 +11,7 @@ import Review from './Views/Review/Review'
 import TakeQuiz from './Views/TakeQuiz/TakeQuiz'
 import UserProfile from './Views/UserProfile/UserProfile'
 import Header from './Shared/Header/Header'
+import PastScores from './Views/PastScores/PastScores'
 import axios from 'axios'
 import { connect } from 'react-redux';
 
@@ -33,13 +34,14 @@ class App extends Component {
         <Route key={4} path="/quiz/reviewsubmissions/:id" component={Review} />,
         <Route key={5} path="/quiz/:id" component={TakeQuiz} />,
         <Route key={6} path="/userprofile" component={UserProfile} />,
-        <Route key={7} path="/home" component={Home} />,
+        <Route key={7} path="/pastScores" component={PastScores} />,
+        <Route key={8} path="/home" component={Home} />,
       ]
     }
     return (
-      <div className='App'>
+      <div className='App' >
         <Router>
-          <Header /> 
+          <Header />
           <Switch>
             {authRoutes}
             <Route path="/register" component={Register} />

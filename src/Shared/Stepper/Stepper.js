@@ -166,7 +166,7 @@ function HorizontalLinearStepper(props) {
     };
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} style={{padding: '10px'}}>
             <Stepper activeStep={activeStep}>
                 {steps.map((label, index) => {
                     const stepProps = {};

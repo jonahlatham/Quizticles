@@ -237,6 +237,32 @@ app.get('/api/score/:id', (req, res, next) => {
             res.send({ success: false, err })
         })
 })
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+app.get('/api/pastScores', (req, res, next) => {
+    const db = app.get('db')
+    db.submitted_answer.find({ people_id: req.session.user.id })
+        .then((quizzes) => {
+            const filteredQuizzes = quizzes.reduce((r, e) => {
+                if (!r.includes(e.quiz_id)) {
+                    r.push(e.quiz_id)
+                }
+                return r
+            }, [])
+            const quizObj = filteredQuizzes.map((quizId) => {
+                return db.quiz.findOne({ id: quizId })
+            })
+            return Promise.all(quizObj)
+        })
+        .then((response) => {
+            res.send({ quiz: response, success: true })
+        })
+        .catch((err) => {
+            res.send({ success: false, err })
+        })
+})
+
 //////////////////////////////////////////////////////////////////////////////////////
 
 app.get('/api/genre', (req, res, next) => {
