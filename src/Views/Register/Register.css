@@ -23,10 +23,15 @@
     padding-left: 5px;
 }
 
+.registerInput::placeholder {
+    opacity: 2;
+    color: red;
+}
+
 .registerInput:focus {
     border-radius: 25px;
     outline: none;
-    box-shadow: 0 0 3pt 2pt red;
+    /* box-shadow: 0 0 3pt 2pt red; */
     padding: 5px;
     padding-left: 15px;
 }

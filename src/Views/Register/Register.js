@@ -58,10 +58,10 @@ class Register extends Component {
                     <div className='register'>
                         <div className='q'>Q</div>
                         <form action="">
-                            <input name='first_name' value={this.state.first_name} onChange={this.handleChange} className='registerInput' placeholder='FIRST NAME' type="text" /> <br />
-                            <input name='last_name' value={this.state.last_name} onChange={this.handleChange} className='registerInput' placeholder='LAST NAME' type="text" /> <br />
-                            <input name='email' value={this.state.email} onChange={this.handleChange} className='registerInput' placeholder='E-MAIL' type="email" /> <br />
-                            <input name='password' value={this.state.password} onChange={this.handleChange} className='registerInput' placeholder='PASSWORD' type="password" onKeyPress={event => {
+                            <input style={{ boxShadow: this.state.first_name.length > 1 ? '0 0 3pt 2pt green' : '0 0 3pt 2pt red' }} name='first_name' value={this.state.first_name} onChange={this.handleChange} className='registerInput' placeholder='FIRST NAME' type="text" /> <br />
+                            <input style={{ boxShadow: this.state.last_name.length > 1 ? '0 0 3pt 2pt green' : '0 0 3pt 2pt red' }} name='last_name' value={this.state.last_name} onChange={this.handleChange} className='registerInput' placeholder='LAST NAME' type="text" /> <br />
+                            <input style={{ boxShadow: this.state.email && this.state.email.includes('@') && this.state.email.includes('.com') ? '0 0 3pt 2pt green' : '0 0 3pt 2pt red' }} name='email' value={this.state.email} onChange={this.handleChange} className='registerInput' placeholder='E-MAIL' type="email" /> <br />
+                            <input style={{ boxShadow: this.state.password.length > 1 ? '0 0 3pt 2pt green' : '0 0 3pt 2pt red' }} name='password' value={this.state.password} onChange={this.handleChange} className='registerInput' placeholder='PASSWORD' type="password" onKeyPress={event => {
                                 if (event.key === 'Enter') {
                                     this.handleRegister()
                                 }
