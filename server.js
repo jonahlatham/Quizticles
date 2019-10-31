@@ -52,7 +52,7 @@ app.delete('/auth/user', (req, res, next) => {
     res.send({ success: true })
 })
 
-////////////////
+///////////////////////////////////////////////////////////////////
 
 app.post('/auth/login', (req, res, next) => {
     const db = app.get('db');
