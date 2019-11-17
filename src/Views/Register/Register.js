@@ -56,7 +56,7 @@ class Register extends Component {
                 <div>
                     <img className='registerImg' src={this.state.backgroundImg} alt="pic" />
                     <div className='register'>
-                        <div className='q'>Q</div>
+                        <div className='q'>Q</div> 
                         <form action="">
                             <input style={{ boxShadow: this.state.first_name.length > 1 ? '0 0 3pt 2pt green' : '0 0 3pt 2pt red' }} name='first_name' value={this.state.first_name} onChange={this.handleChange} className='registerInput' placeholder='FIRST NAME' type="text" /> <br />
                             <input style={{ boxShadow: this.state.last_name.length > 1 ? '0 0 3pt 2pt green' : '0 0 3pt 2pt red' }} name='last_name' value={this.state.last_name} onChange={this.handleChange} className='registerInput' placeholder='LAST NAME' type="text" /> <br />
